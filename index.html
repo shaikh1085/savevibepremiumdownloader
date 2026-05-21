@@ -1,0 +1,1679 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SaveVibe - All-in-One Premium Social Media Video Downloader (HD, No Watermark)</title>
+    
+    <!-- Primary SEO Meta Tags -->
+    <meta name="title" content="SaveVibe - Premium Social Media Video Downloader">
+    <meta name="description" content="Download videos, reels, stories, and photos from Instagram, TikTok, YouTube, Pinterest, Twitter, and Facebook in HD with no watermark. Fast, free, and secure online downloader.">
+    <meta name="keywords" content="video downloader, download instagram reels, tiktok downloader no watermark, pinterest video downloader, youtube mp4 downloader, twitter video saver, download facebook videos HD, free online downloader">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="English">
+    <meta name="author" content="SaveVibe Team">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://savevibe.net/">
+    <meta property="og:title" content="SaveVibe - All-in-One Premium Social Media Video Downloader">
+    <meta property="og:description" content="Download high-quality videos and reels from your favorite social media platforms instantly. Unlimited free downloads with zero quality loss.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=1200&h=630&fit=crop">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://savevibe.net/">
+    <meta property="twitter:title" content="SaveVibe - All-in-One Premium Social Media Video Downloader">
+    <meta property="twitter:description" content="Download high-quality videos and reels from your favorite social media platforms instantly. Unlimited free downloads with zero quality loss.">
+    <meta property="twitter:image" content="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=1200&h=630&fit=crop">
+
+    <!-- Font Family -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            primary: '#6366f1',
+                            secondary: '#a855f7',
+                            accent: '#ec4899',
+                            darkBg: '#0b0f19',
+                            lightBg: '#f8fafc'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- FontAwesome & Lucide Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Custom Micro-animations -->
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.15) 0%, rgba(168, 85, 247, 0.15) 50%, rgba(236, 72, 153, 0.15) 100%);
+        }
+        .text-gradient {
+            background: linear-gradient(to right, #6366f1, #a855f7, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .glassmorphism {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .light .glassmorphism {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(0, 0, 0, 0.06);
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        .float-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes pulse-slow {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
+        }
+        .pulse-slow {
+            animation: pulse-slow 8s infinite;
+        }
+        /* Auth Modal Transitions */
+        .modal-active {
+            opacity: 1 !important;
+            transform: scale(1) !important;
+            pointer-events: auto !important;
+        }
+    </style>
+
+    <!-- Structured JSON-LD Schema (Crucial for Google Ranking #1) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "SaveVibe",
+      "url": "https://savevibe.net/",
+      "image": "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=1200&h=630&fit=crop",
+      "description": "Premium and fastest all-in-one social media video downloader for Instagram Reels, TikTok (no watermark), YouTube, Pinterest, Twitter, and Facebook.",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires JavaScript. Requires HTML5.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0.00",
+        "priceCurrency": "USD"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "ratingCount": "12840"
+      }
+    }
+    </script>
+
+    <!-- FAQ schema for Google Search Results -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [{
+        "@type": "Question",
+        "name": "Is SaveVibe completely free to use?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, SaveVibe is 100% free with unlimited downloads. We do not require registration, login, or subscriptions."
+        }
+      },{
+        "@type": "Question",
+        "name": "Can I download TikTok videos without any watermark?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Absolutely! SaveVibe has a dedicated bypass filter that extracts and downloads clean TikTok videos without the official watermark in full HD."
+        }
+      },{
+        "@type": "Question",
+        "name": "Are my downloads anonymous and safe?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, completely. We do not track download logs or keep user details. Our high-security SSL encryption keeps your browsing experience completely safe and anonymous."
+        }
+      }]
+    }
+    </script>
+</head>
+<body class="bg-brand-darkBg text-slate-200 font-sans transition-colors duration-300 light:bg-brand-lightBg light:text-slate-800">
+
+    <!-- Background Accents -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
+        <div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-brand-primary opacity-20 rounded-full blur-[120px] pulse-slow"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-brand-accent opacity-15 rounded-full blur-[120px] pulse-slow"></div>
+    </div>
+
+    <!-- Sticky Navigation Header -->
+    <header class="sticky top-0 z-50 glassmorphism transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center space-x-2.5 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-primary via-brand-secondary to-brand-accent p-[2px] shadow-lg shadow-purple-500/20 group-hover:scale-105 transition-transform">
+                    <div class="w-full h-full bg-brand-darkBg rounded-[10px] flex items-center justify-center">
+                        <i class="fa-solid fa-cloud-arrow-down text-purple-400 group-hover:text-pink-400 transition-colors"></i>
+                    </div>
+                </div>
+                <span class="font-display font-extrabold text-2xl tracking-tight bg-gradient-to-r from-white via-indigo-100 to-purple-300 dark:from-white dark:to-purple-200 light:from-slate-900 light:to-indigo-950 text-gradient">SaveVibe</span>
+            </a>
+
+            <!-- Right Nav Links -->
+            <div class="flex items-center space-x-4 md:space-x-6">
+                <nav class="hidden lg:flex items-center space-x-8">
+                    <a href="#downloader" class="text-sm font-medium hover:text-brand-primary transition-colors">Downloader</a>
+                    <a href="#how-to-download" class="text-sm font-medium hover:text-brand-primary transition-colors">How it Works</a>
+                    <a href="#features" class="text-sm font-medium hover:text-brand-primary transition-colors">Features</a>
+                    <a href="#faq" class="text-sm font-medium hover:text-brand-primary transition-colors">FAQ</a>
+                </nav>
+
+                <!-- Auth Button Group (Dynamic) -->
+                <div id="authHeaderGroup" class="flex items-center space-x-2 sm:space-x-4">
+                    <!-- Default State: Sign In / Up Buttons -->
+                    <button id="openSignInBtn" class="text-sm font-semibold hover:text-white dark:hover:text-white light:hover:text-slate-900 transition-colors px-3 py-2">
+                        Sign In
+                    </button>
+                    <button id="openSignUpBtn" class="relative group overflow-hidden text-xs sm:text-sm font-bold bg-gradient-to-r from-brand-primary to-brand-secondary text-white px-4 py-2 sm:px-5 sm:py-2.5 rounded-xl shadow-lg shadow-indigo-500/15 hover:shadow-indigo-500/25 transition-all">
+                        Get Premium Free
+                    </button>
+                </div>
+
+                <!-- Theme Toggle Button -->
+                <button id="themeToggle" class="p-2.5 rounded-xl bg-slate-800/60 border border-slate-700 hover:bg-slate-800 hover:border-slate-500 transition-all dark:text-yellow-400 light:bg-slate-100 light:border-slate-200 light:text-indigo-600 light:hover:bg-slate-200" aria-label="Toggle Theme">
+                    <i class="fa-solid fa-moon dark:hidden"></i>
+                    <i class="fa-solid fa-sun hidden dark:inline"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="relative z-10">
+
+        <!-- Hero Section & Video Downloader Widget -->
+        <section id="downloader" class="relative pt-12 pb-24 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-4xl mx-auto text-center">
+                <!-- Premium Badge -->
+                <div class="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full glassmorphism text-xs font-semibold text-purple-400 mb-6 tracking-wide uppercase border border-purple-500/30">
+                    <span class="flex h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    <span>10x Faster HD Extractions Active</span>
+                </div>
+
+                <h1 class="font-display font-extrabold text-4xl sm:text-6xl tracking-tight mb-6">
+                    Download Any Social Media Video <br class="hidden sm:inline">
+                    <span class="text-gradient">With Lightning Speed</span>
+                </h1>
+                
+                <p class="text-lg text-slate-400 light:text-slate-600 max-w-2xl mx-auto mb-10">
+                    Paste your video link below to save high-quality content instantly. Supports Instagram, TikTok, YouTube, Pinterest, Twitter, and Facebook with zero restrictions.
+                </p>
+
+                <!-- Downloader Widget -->
+                <div class="relative glassmorphism rounded-3xl p-6 sm:p-8 shadow-2xl shadow-indigo-500/10 mb-16 border-slate-800/80 transition-all duration-300" id="mainInputContainer">
+                    
+                    <!-- Floating Platform Indicators -->
+                    <div class="flex flex-wrap items-center justify-center gap-4 mb-6">
+                        <button class="platform-btn active transition-all flex items-center space-x-2 px-4 py-2 rounded-full border border-pink-500/20 bg-pink-500/10 text-pink-400 text-sm font-medium" data-platform="instagram">
+                            <i class="fa-brands fa-instagram text-base"></i>
+                            <span>Instagram</span>
+                        </button>
+                        <button class="platform-btn transition-all flex items-center space-x-2 px-4 py-2 rounded-full border border-slate-800 bg-slate-900/40 text-slate-400 hover:text-sky-400 hover:border-sky-500/20 hover:bg-sky-500/5 text-sm font-medium" data-platform="tiktok">
+                            <i class="fa-brands fa-tiktok text-base"></i>
+                            <span>TikTok</span>
+                        </button>
+                        <button class="platform-btn transition-all flex items-center space-x-2 px-4 py-2 rounded-full border border-slate-800 bg-slate-900/40 text-slate-400 hover:text-red-500 hover:border-red-500/20 hover:bg-red-500/5 text-sm font-medium" data-platform="youtube">
+                            <i class="fa-brands fa-youtube text-base"></i>
+                            <span>YouTube</span>
+                        </button>
+                        <button class="platform-btn transition-all flex items-center space-x-2 px-4 py-2 rounded-full border border-slate-800 bg-slate-900/40 text-slate-400 hover:text-red-400 hover:border-red-400/20 hover:bg-red-400/5 text-sm font-medium" data-platform="pinterest">
+                            <i class="fa-brands fa-pinterest text-base"></i>
+                            <span>Pinterest</span>
+                        </button>
+                        <button class="platform-btn transition-all flex items-center space-x-2 px-4 py-2 rounded-full border border-slate-800 bg-slate-900/40 text-slate-400 hover:text-sky-400 hover:border-sky-400/20 hover:bg-sky-400/5 text-sm font-medium" data-platform="twitter">
+                            <i class="fa-brands fa-twitter text-base"></i>
+                            <span>Twitter</span>
+                        </button>
+                        <button class="platform-btn transition-all flex items-center space-x-2 px-4 py-2 rounded-full border border-slate-800 bg-slate-900/40 text-slate-400 hover:text-blue-500 hover:border-blue-500/20 hover:bg-blue-500/5 text-sm font-medium" data-platform="facebook">
+                            <i class="fa-brands fa-facebook text-base"></i>
+                            <span>Facebook</span>
+                        </button>
+                    </div>
+
+                    <!-- Input Form -->
+                    <form id="downloadForm" class="relative flex flex-col sm:flex-row items-stretch gap-3">
+                        <div class="relative flex-grow">
+                            <!-- Platform Specific Dynamic Icon Inside Input -->
+                            <div class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 transition-all duration-300" id="inputBrandIcon">
+                                <i data-lucide="link" class="w-5 h-5"></i>
+                            </div>
+                            
+                            <input type="url" 
+                                   id="videoUrl" 
+                                   required 
+                                   autocomplete="off"
+                                   placeholder="Paste social video link here..." 
+                                   class="w-full pl-12 pr-4 py-4 sm:py-5 bg-slate-950/60 rounded-2xl border-2 border-slate-800 focus:border-brand-primary outline-none text-slate-100 transition-all placeholder:text-slate-600 focus:ring-4 focus:ring-brand-primary/10 text-sm sm:text-base light:bg-white light:border-slate-200 light:text-slate-900 light:placeholder:text-slate-400">
+                        </div>
+                        
+                        <!-- Submit Button with Gradient -->
+                        <button type="submit" class="relative group overflow-hidden py-4 px-8 rounded-2xl bg-gradient-to-r from-brand-primary via-brand-secondary to-brand-accent text-white font-semibold transition-all shadow-xl shadow-purple-500/20 hover:shadow-purple-500/30 flex items-center justify-center space-x-2 shrink-0">
+                            <div class="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                            <span>Download Fast</span>
+                            <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+                        </button>
+                    </form>
+
+                    <!-- Alert / Status Message Container -->
+                    <div id="statusMessage" class="hidden mt-4 text-sm text-center font-medium"></div>
+
+                    <!-- Live Real-Time Dynamic Notification Bar (Fake SEO Boost) -->
+                    <div class="mt-6 flex items-center justify-between text-xs text-slate-500 border-t border-slate-800/80 pt-4 light:border-slate-200">
+                        <span class="flex items-center gap-1.5">
+                            <span class="h-1.5 w-1.5 rounded-full bg-green-500"></span>
+                            <span>Engine Status: Online</span>
+                        </span>
+                        <span id="recentDownloadNotification" class="transition-opacity duration-500">
+                            <i class="fa-solid fa-fire text-amber-500"></i> Active User Download: Pinterest video saved 2s ago
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Extraction & Loading Simulator (Hidden by default, shown upon click) -->
+                <div id="extractionContainer" class="hidden relative glassmorphism rounded-3xl p-8 shadow-2xl max-w-2xl mx-auto mb-16 border-purple-500/20 transition-all duration-500">
+                    <!-- Dynamic platform badge -->
+                    <div class="flex items-center justify-center mb-6">
+                        <div id="extractionPlatformLogo" class="w-16 h-16 rounded-2xl flex items-center justify-center shadow-lg transition-transform duration-300">
+                            <i class="fa-solid fa-cloud-arrow-down text-3xl text-white"></i>
+                        </div>
+                    </div>
+
+                    <!-- Loader & Step Sequence -->
+                    <div id="loaderSequence" class="space-y-6">
+                        <div class="text-center">
+                            <h3 class="font-display font-semibold text-xl tracking-tight text-white dark:text-white light:text-slate-900" id="loaderTitle">Connecting to Stream Servers</h3>
+                            <p class="text-xs text-slate-400 mt-1 light:text-slate-500" id="loaderSubtitle">We bypass content security to grab high-definition files.</p>
+                        </div>
+                        
+                        <!-- Premium Loader Bar -->
+                        <div class="w-full bg-slate-900 rounded-full h-2 overflow-hidden light:bg-slate-200">
+                            <div id="loaderProgressBar" class="h-full bg-gradient-to-r from-brand-primary via-brand-secondary to-brand-accent w-0 transition-all duration-300"></div>
+                        </div>
+
+                        <!-- Active Task Steps Checklist -->
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs text-left text-slate-400">
+                            <div class="flex items-center gap-2 bg-slate-950/40 p-3 rounded-xl border border-slate-800/80 light:bg-slate-50 light:border-slate-200" id="step1">
+                                <span class="loader-step-dot h-2 w-2 rounded-full bg-yellow-500 animate-pulse"></span>
+                                <span>Verifying URL</span>
+                            </div>
+                            <div class="flex items-center gap-2 bg-slate-950/40 p-3 rounded-xl border border-slate-800/80 light:bg-slate-50 light:border-slate-200 opacity-50" id="step2">
+                                <span class="loader-step-dot h-2 w-2 rounded-full bg-slate-600"></span>
+                                <span>Generating HD Link</span>
+                            </div>
+                            <div class="flex items-center gap-2 bg-slate-950/40 p-3 rounded-xl border border-slate-800/80 light:bg-slate-50 light:border-slate-200 opacity-50" id="step3">
+                                <span class="loader-step-dot h-2 w-2 rounded-full bg-slate-600"></span>
+                                <span>Bypassing Restrictions</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Final Download Output Results Card (Initially Hidden) -->
+                    <div id="outputResults" class="hidden transition-all duration-500 scale-95 opacity-0">
+                        <div class="flex flex-col md:flex-row gap-6 items-center">
+                            <!-- Visual Simulated Thumbnail -->
+                            <div class="relative w-full md:w-48 aspect-video md:aspect-square bg-slate-900 rounded-2xl overflow-hidden shadow-inner flex items-center justify-center border border-slate-800 shrink-0">
+                                <div class="absolute inset-0 bg-gradient-to-t from-slate-950 to-transparent z-10"></div>
+                                <img id="mediaThumbnail" src="" alt="Extracted social media content thumbnail preview" class="w-full h-full object-cover">
+                                <span class="absolute bottom-2 right-2 bg-black/70 text-white text-[10px] px-1.5 py-0.5 rounded font-medium z-20" id="mediaDuration">HD 1080p</span>
+                            </div>
+
+                            <!-- Video Content Metadata Info & Actions -->
+                            <div class="flex-grow text-left w-full">
+                                <span class="inline-block bg-brand-primary/10 text-brand-primary text-[10px] font-bold px-2 py-0.5 rounded-full mb-1 border border-brand-primary/20" id="mediaSourceBadge">INSTAGRAM</span>
+                                <h4 id="mediaTitle" class="font-display font-semibold text-lg text-white mb-2 line-clamp-2 light:text-slate-900">Extracted Video - SaveVibe Ultra Engine</h4>
+                                <div class="flex items-center gap-4 text-xs text-slate-400 mb-5">
+                                    <span>Format: <b class="text-slate-200 font-medium light:text-slate-800">MP4 (Video)</b></span>
+                                    <span>•</span>
+                                    <span>Bitrate: <b class="text-slate-200 font-medium light:text-slate-800">High Quality (HD)</b></span>
+                                </div>
+
+                                <!-- Real Simulation Download Buttons -->
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                    <button id="downloadFileBtn" class="flex items-center justify-center gap-2 bg-gradient-to-r from-emerald-500 to-teal-500 text-white hover:from-emerald-400 hover:to-teal-400 transition-all font-semibold py-3 px-5 rounded-xl shadow-lg shadow-emerald-500/10">
+                                        <i data-lucide="download" class="w-4 h-4"></i>
+                                        <span>Download Full HD</span>
+                                    </button>
+                                    <button id="downloadAudioBtn" class="flex items-center justify-center gap-2 bg-slate-800 hover:bg-slate-700 transition-colors text-slate-200 font-semibold py-3 px-5 rounded-xl border border-slate-700 light:bg-slate-100 light:border-slate-200 light:text-slate-800 light:hover:bg-slate-200">
+                                        <i data-lucide="music" class="w-4 h-4"></i>
+                                        <span>Download MP3</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Reset and Download another -->
+                        <div class="mt-6 border-t border-slate-800/80 pt-4 flex justify-between items-center text-xs light:border-slate-200">
+                            <span class="text-slate-400 flex items-center gap-1">
+                                <i class="fa-solid fa-check-circle text-emerald-400"></i> Link bypassed successfully
+                            </span>
+                            <button id="resetDownloaderBtn" class="text-brand-primary hover:text-brand-secondary transition-colors font-semibold">
+                                Download another video →
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Premium User Panel / Downloads History (Dynamic Hidden/Unlocked) -->
+                <div id="premiumDashboardSection" class="hidden max-w-4xl mx-auto mb-16 scale-95 opacity-0 transition-all duration-500">
+                    <div class="glassmorphism rounded-3xl p-6 sm:p-8 border border-purple-500/30 shadow-2xl relative overflow-hidden">
+                        <!-- Neon side gradient -->
+                        <div class="absolute right-0 top-0 w-32 h-32 bg-brand-secondary/10 rounded-full blur-2xl"></div>
+                        
+                        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between border-b border-slate-800/80 pb-6 mb-6 light:border-slate-200">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-brand-primary to-brand-accent p-[2px] shadow-lg shadow-indigo-500/20">
+                                    <div class="w-full h-full bg-brand-darkBg rounded-[14px] flex items-center justify-center light:bg-white">
+                                        <i class="fa-solid fa-crown text-purple-400 text-lg"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h3 class="font-display font-bold text-xl text-white light:text-slate-900 flex items-center gap-2">
+                                        <span id="dashboardUsername">Profile Dashboard</span>
+                                        <span class="bg-gradient-to-r from-purple-500 to-pink-500 text-[10px] text-white px-2 py-0.5 rounded-full font-black uppercase tracking-wider">Premium Active</span>
+                                    </h3>
+                                    <p class="text-xs text-slate-500">Welcome to your high-speed cloud cloud hub.</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Pro status stats card -->
+                            <div class="flex gap-4 mt-4 sm:mt-0 text-xs text-slate-400">
+                                <div class="bg-slate-950/40 border border-slate-800 px-3.5 py-2 rounded-xl light:bg-white light:border-slate-200">
+                                    <div class="text-slate-500 text-[10px] uppercase">Daily Limit</div>
+                                    <div class="font-bold text-white light:text-slate-800 flex items-center gap-1">
+                                        <i class="fa-solid fa-infinity text-purple-400 text-[10px]"></i> Unlimited
+                                    </div>
+                                </div>
+                                <div class="bg-slate-950/40 border border-slate-800 px-3.5 py-2 rounded-xl light:bg-white light:border-slate-200">
+                                    <div class="text-slate-500 text-[10px] uppercase">Download Speed</div>
+                                    <div class="font-bold text-emerald-400">10x Boost active</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Active History Log list -->
+                        <div>
+                            <h4 class="font-display font-semibold text-sm text-slate-300 dark:text-slate-300 light:text-slate-800 mb-4 flex items-center gap-1.5">
+                                <i data-lucide="history" class="w-4 h-4 text-purple-400"></i> My Download Logs & History
+                            </h4>
+                            
+                            <div id="historyLogsList" class="space-y-2.5 max-h-[220px] overflow-y-auto pr-1">
+                                <!-- Empty state log message -->
+                                <div id="emptyHistoryPlaceholder" class="text-center py-6 text-xs text-slate-600 border border-dashed border-slate-800 rounded-xl light:border-slate-200">
+                                    <i class="fa-solid fa-cloud-arrow-down mb-1 text-base text-slate-700"></i>
+                                    <div>No downloads logged yet. Enter a video link above to extract files directly.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Real-time Stats Section for Google SEO Trust -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto pt-6 text-center border-t border-slate-900 dark:border-slate-800/60 light:border-slate-200">
+                    <div class="p-4 bg-slate-950/20 rounded-2xl glassmorphism">
+                        <div class="font-display font-extrabold text-2xl md:text-3xl text-gradient">24M+</div>
+                        <div class="text-xs text-slate-500 mt-1 uppercase tracking-wide">Downloads</div>
+                    </div>
+                    <div class="p-4 bg-slate-950/20 rounded-2xl glassmorphism">
+                        <div class="font-display font-extrabold text-2xl md:text-3xl text-gradient">99.8%</div>
+                        <div class="text-xs text-slate-500 mt-1 uppercase tracking-wide">Success Rate</div>
+                    </div>
+                    <div class="p-4 bg-slate-950/20 rounded-2xl glassmorphism">
+                        <div class="font-display font-extrabold text-2xl md:text-3xl text-gradient">1.8s</div>
+                        <div class="text-xs text-slate-500 mt-1 uppercase tracking-wide">Avg. Speed</div>
+                    </div>
+                    <div class="p-4 bg-slate-950/20 rounded-2xl glassmorphism">
+                        <div class="font-display font-extrabold text-2xl md:text-3xl text-gradient">Free</div>
+                        <div class="text-xs text-slate-500 mt-1 uppercase tracking-wide">Forever</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Step-by-Step Guide Section -->
+        <section id="how-to-download" class="py-24 relative overflow-hidden bg-slate-950/40 border-y border-slate-900/80 dark:border-slate-900 light:bg-slate-50 light:border-slate-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="font-display font-extrabold text-3xl sm:text-5xl tracking-tight text-white dark:text-white light:text-slate-900 mb-4">
+                        3 Simple Steps to Download Any Video
+                    </h2>
+                    <p class="text-slate-400 light:text-slate-600">
+                        Our user-friendly platform allows you to download videos instantly on Android, iPhone, PC, and macOS without extra extension requirements.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Step 1 Card -->
+                    <div class="group relative glassmorphism rounded-3xl p-8 hover:scale-[1.02] hover:-translate-y-1 transition-all duration-300">
+                        <div class="absolute -top-6 left-8 w-12 h-12 rounded-2xl bg-gradient-to-tr from-brand-primary to-brand-secondary flex items-center justify-center font-display font-black text-lg text-white shadow-lg shadow-purple-500/20">
+                            1
+                        </div>
+                        <h3 class="font-display font-semibold text-xl text-white mt-4 mb-3 group-hover:text-brand-primary transition-colors light:text-slate-900">Copy URL Video</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed light:text-slate-600">
+                            Go to your social app (like Instagram, TikTok, or YouTube). Click the share button and choose the copy video link option to copy it to your clipboard.
+                        </p>
+                    </div>
+
+                    <!-- Step 2 Card -->
+                    <div class="group relative glassmorphism rounded-3xl p-8 hover:scale-[1.02] hover:-translate-y-1 transition-all duration-300">
+                        <div class="absolute -top-6 left-8 w-12 h-12 rounded-2xl bg-gradient-to-tr from-brand-secondary to-brand-accent flex items-center justify-center font-display font-black text-lg text-white shadow-lg shadow-purple-500/20">
+                            2
+                        </div>
+                        <h3 class="font-display font-semibold text-xl text-white mt-4 mb-3 group-hover:text-brand-secondary transition-colors light:text-slate-900">Paste in Input</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed light:text-slate-600">
+                            Navigate back to <span class="text-brand-primary font-medium">SaveVibe</span> and paste the copied URL link into the video input box at the top of the page.
+                        </p>
+                    </div>
+
+                    <!-- Step 3 Card -->
+                    <div class="group relative glassmorphism rounded-3xl p-8 hover:scale-[1.02] hover:-translate-y-1 transition-all duration-300">
+                        <div class="absolute -top-6 left-8 w-12 h-12 rounded-2xl bg-gradient-to-tr from-brand-accent to-pink-500 flex items-center justify-center font-display font-black text-lg text-white shadow-lg shadow-purple-500/20">
+                            3
+                        </div>
+                        <h3 class="font-display font-semibold text-xl text-white mt-4 mb-3 group-hover:text-brand-accent transition-colors light:text-slate-900">Download Video HD</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed light:text-slate-600">
+                            Click the dynamic download button, wait a few seconds while our high-speed engine extracts the media, then select the quality you want.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Core Features Section -->
+        <section id="features" class="py-24">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col lg:flex-row items-center gap-16">
+                    
+                    <!-- Left Column visual banner mock -->
+                    <div class="w-full lg:w-1/2 relative float-animation">
+                        <div class="absolute inset-0 bg-gradient-to-tr from-brand-primary to-brand-accent rounded-3xl opacity-20 blur-2xl z-0"></div>
+                        <div class="relative z-10 glassmorphism rounded-3xl p-8 border border-slate-800 shadow-2xl max-w-md mx-auto">
+                            <!-- Premium Media Widget UI Simulation -->
+                            <div class="flex items-center justify-between mb-6">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-10 h-10 rounded-xl bg-purple-500/10 flex items-center justify-center border border-purple-500/20">
+                                        <i class="fa-solid fa-play text-purple-400"></i>
+                                    </div>
+                                    <div>
+                                        <div class="font-display font-semibold text-sm">HD Engine Ver. 4.2</div>
+                                        <div class="text-[10px] text-slate-500">Fast bypass servers live</div>
+                                    </div>
+                                </div>
+                                <span class="bg-emerald-500/10 text-emerald-400 text-[10px] font-bold px-2 py-0.5 rounded-full border border-emerald-500/20">Optimized</span>
+                            </div>
+                            
+                            <!-- Static Graphic Grid items -->
+                            <div class="space-y-4">
+                                <div class="flex items-center justify-between p-3 bg-slate-950/60 rounded-xl border border-slate-800 light:bg-slate-50 light:border-slate-200">
+                                    <span class="text-xs text-slate-400 flex items-center gap-2"><i class="fa-brands fa-tiktok text-pink-400"></i> TikTok No Watermark</span>
+                                    <span class="text-xs font-semibold text-emerald-400">Ready</span>
+                                </div>
+                                <div class="flex items-center justify-between p-3 bg-slate-950/60 rounded-xl border border-slate-800 light:bg-slate-50 light:border-slate-200">
+                                    <span class="text-xs text-slate-400 flex items-center gap-2"><i class="fa-brands fa-instagram text-purple-400"></i> Instagram Ultra Reels</span>
+                                    <span class="text-xs font-semibold text-emerald-400">Ready</span>
+                                </div>
+                                <div class="flex items-center justify-between p-3 bg-slate-950/60 rounded-xl border border-slate-800 light:bg-slate-50 light:border-slate-200">
+                                    <span class="text-xs text-slate-400 flex items-center gap-2"><i class="fa-brands fa-pinterest text-red-500"></i> Pinterest Video Saver</span>
+                                    <span class="text-xs font-semibold text-emerald-400">Ready</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column Features Content -->
+                    <div class="w-full lg:w-1/2">
+                        <h2 class="font-display font-extrabold text-3xl sm:text-5xl tracking-tight text-white dark:text-white light:text-slate-900 mb-6">
+                            Why Choose <span class="text-gradient">SaveVibe</span> Over Others?
+                        </h2>
+                        <p class="text-slate-400 mb-8 max-w-xl leading-relaxed light:text-slate-600">
+                            Unlike traditional, clunky, and ad-heavy video downloaders, SaveVibe prioritizes raw speed, security, and a beautiful user experience. No signups, no malicious popups, and absolutely zero quality reduction.
+                        </p>
+
+                        <!-- Feature list -->
+                        <div class="space-y-6">
+                            <!-- Feature 1 -->
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 rounded-xl bg-purple-500/10 flex items-center justify-center shrink-0 border border-purple-500/20">
+                                    <i data-lucide="shield-check" class="w-6 h-6 text-purple-400"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-display font-semibold text-lg text-white light:text-slate-900">Highly Secure & SSL Encrypted</h4>
+                                    <p class="text-sm text-slate-400 light:text-slate-600">Your privacy is crucial. We do not store logs, trace download locations, or require any background installations.</p>
+                                </div>
+                            </div>
+
+                            <!-- Feature 2 -->
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 rounded-xl bg-indigo-500/10 flex items-center justify-center shrink-0 border border-indigo-500/20">
+                                    <i data-lucide="sparkles" class="w-6 h-6 text-indigo-400"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-display font-semibold text-lg text-white light:text-slate-900">Highest HD Video Extraction Quality</h4>
+                                    <p class="text-sm text-slate-400 light:text-slate-600">We extract and source direct links directly from social networks' servers, ensuring full quality MP4 files.</p>
+                                </div>
+                            </div>
+
+                            <!-- Feature 3 -->
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 rounded-xl bg-pink-500/10 flex items-center justify-center shrink-0 border border-pink-500/20">
+                                    <i data-lucide="zap" class="w-6 h-6 text-pink-400"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-display font-semibold text-lg text-white light:text-slate-900">Cross-Platform Usability</h4>
+                                    <p class="text-sm text-slate-400 light:text-slate-600">Savevibe is fully responsive. Seamlessly download videos on mobile devices, tablets, Chromebooks, or desktop browsers.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Accordion Section (Huge SEO Booster) -->
+        <section id="faq" class="py-24 bg-slate-950/40 border-t border-slate-900/80 dark:border-slate-900 light:bg-slate-50 light:border-slate-200">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-16">
+                    <h2 class="font-display font-extrabold text-3xl sm:text-5xl tracking-tight text-white dark:text-white light:text-slate-900 mb-4">
+                        Frequently Asked Questions
+                    </h2>
+                    <p class="text-slate-400 light:text-slate-600">
+                        Everything you need to know about downloading videos from social media platforms with our online premium utility.
+                    </p>
+                </div>
+
+                <!-- Accordions Container -->
+                <div class="space-y-4">
+                    <!-- FAQ 1 -->
+                    <div class="glassmorphism rounded-2xl overflow-hidden border border-slate-800 transition-all duration-300">
+                        <button class="w-full flex justify-between items-center p-6 text-left focus:outline-none group" onclick="toggleFaq(this)">
+                            <span class="font-display font-semibold text-base sm:text-lg text-white group-hover:text-brand-primary transition-colors light:text-slate-900">Is SaveVibe completely free to use?</span>
+                            <span class="faq-icon transition-transform duration-300 text-slate-400 group-hover:text-brand-primary"><i class="fa-solid fa-chevron-down"></i></span>
+                        </button>
+                        <div class="faq-answer hidden px-6 pb-6 text-sm text-slate-400 leading-relaxed light:text-slate-600">
+                            Yes, SaveVibe is 100% free with unlimited downloads. We do not require registration, login, email inputs, or subscriptions. We keep our site clean from shady premium walls.
+                        </div>
+                    </div>
+
+                    <!-- FAQ 2 -->
+                    <div class="glassmorphism rounded-2xl overflow-hidden border border-slate-800 transition-all duration-300">
+                        <button class="w-full flex justify-between items-center p-6 text-left focus:outline-none group" onclick="toggleFaq(this)">
+                            <span class="font-display font-semibold text-base sm:text-lg text-white group-hover:text-brand-primary transition-colors light:text-slate-900">Can I download TikTok videos without any watermark?</span>
+                            <span class="faq-icon transition-transform duration-300 text-slate-400 group-hover:text-brand-primary"><i class="fa-solid fa-chevron-down"></i></span>
+                        </button>
+                        <div class="faq-answer hidden px-6 pb-6 text-sm text-slate-400 leading-relaxed light:text-slate-600">
+                            Absolutely! SaveVibe has a dedicated bypass filter that extracts and downloads clean TikTok videos without the official watermark in full HD. Simply copy the link and paste it in.
+                        </div>
+                    </div>
+
+                    <!-- FAQ 3 -->
+                    <div class="glassmorphism rounded-2xl overflow-hidden border border-slate-800 transition-all duration-300">
+                        <button class="w-full flex justify-between items-center p-6 text-left focus:outline-none group" onclick="toggleFaq(this)">
+                            <span class="font-display font-semibold text-base sm:text-lg text-white group-hover:text-brand-primary transition-colors light:text-slate-900">Are my downloads anonymous and safe?</span>
+                            <span class="faq-icon transition-transform duration-300 text-slate-400 group-hover:text-brand-primary"><i class="fa-solid fa-chevron-down"></i></span>
+                        </button>
+                        <div class="faq-answer hidden px-6 pb-6 text-sm text-slate-400 leading-relaxed light:text-slate-600">
+                            Yes, completely. We do not track download logs or keep user details. Our high-security SSL encryption keeps your browsing experience completely safe, anonymous, and protected from cyber malware.
+                        </div>
+                    </div>
+
+                    <!-- FAQ 4 -->
+                    <div class="glassmorphism rounded-2xl overflow-hidden border border-slate-800 transition-all duration-300">
+                        <button class="w-full flex justify-between items-center p-6 text-left focus:outline-none group" onclick="toggleFaq(this)">
+                            <span class="font-display font-semibold text-base sm:text-lg text-white group-hover:text-brand-primary transition-colors light:text-slate-900">Where are downloaded social media videos saved?</span>
+                            <span class="faq-icon transition-transform duration-300 text-slate-400 group-hover:text-brand-primary"><i class="fa-solid fa-chevron-down"></i></span>
+                        </button>
+                        <div class="faq-answer hidden px-6 pb-6 text-sm text-slate-400 leading-relaxed light:text-slate-600">
+                            All downloaded files are saved directly in your browser's default download folder. For PCs or laptops, this is typically the "Downloads" folder. On iPhones or Android devices, they are saved inside the Files app or gallery.
+                        </div>
+                    </div>
+
+                    <!-- FAQ 5 -->
+                    <div class="glassmorphism rounded-2xl overflow-hidden border border-slate-800 transition-all duration-300">
+                        <button class="w-full flex justify-between items-center p-6 text-left focus:outline-none group" onclick="toggleFaq(this)">
+                            <span class="font-display font-semibold text-base sm:text-lg text-white group-hover:text-brand-primary transition-colors light:text-slate-900">Is it safe to download content with SaveVibe?</span>
+                            <span class="faq-icon transition-transform duration-300 text-slate-400 group-hover:text-brand-primary"><i class="fa-solid fa-chevron-down"></i></span>
+                        </button>
+                        <div class="faq-answer hidden px-6 pb-6 text-sm text-slate-400 leading-relaxed light:text-slate-600">
+                            Yes. SaveVibe processes all downloads purely client-side or through highly secure dynamic servers. We host zero malicious redirects, external ads that trigger virus alerts, or popup traps typical on legacy download sites.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Global Floating Authentication Modal Overlay -->
+    <div id="authOverlay" class="fixed inset-0 z-[100] bg-slate-950/80 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300 flex items-center justify-center p-4">
+        <div id="authModal" class="relative w-full max-w-md bg-[#0e1320] border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-2xl transition-all duration-300 scale-95 opacity-0 light:bg-white light:border-slate-200">
+            
+            <!-- Close Button icon -->
+            <button id="closeAuthBtn" class="absolute top-4 right-4 text-slate-500 hover:text-white transition-colors p-2 light:hover:text-slate-950">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+
+            <!-- Authentication Brand / Premium Tag -->
+            <div class="text-center mb-6">
+                <div class="inline-flex items-center space-x-1 px-2.5 py-1 rounded-full bg-purple-500/10 text-purple-400 text-[10px] font-bold uppercase tracking-wide border border-purple-500/20 mb-3">
+                    <i class="fa-solid fa-crown text-[8px]"></i>
+                    <span>Unlock 10x Speed Extraction</span>
+                </div>
+                <h3 id="authModalTitle" class="font-display font-extrabold text-2xl text-white light:text-slate-900">Get Free Account</h3>
+                <p id="authModalSubtitle" class="text-xs text-slate-500 mt-1">Unlock fast downloads and history logging instantly.</p>
+            </div>
+
+            <!-- Tab Switchers -->
+            <div class="grid grid-cols-2 bg-slate-950/60 p-1.5 rounded-xl border border-slate-800 mb-6 light:bg-slate-100 light:border-slate-200">
+                <button id="tabRegister" class="py-2 text-xs font-bold rounded-lg bg-slate-900 text-white shadow-md light:bg-white light:text-slate-900 transition-all">Sign Up</button>
+                <button id="tabLogin" class="py-2 text-xs font-medium rounded-lg text-slate-400 hover:text-white light:hover:text-slate-900 transition-all">Sign In</button>
+            </div>
+
+            <!-- Authentic Account Form -->
+            <form id="authForm" class="space-y-4">
+                <!-- Username Field (Visible on Register) -->
+                <div id="usernameInputGroup" class="relative">
+                    <div class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-600">
+                        <i data-lucide="user" class="w-4 h-4"></i>
+                    </div>
+                    <input type="text" id="authUsername" placeholder="Create Username" required
+                        class="w-full pl-11 pr-4 py-3 bg-slate-950/60 border border-slate-800 rounded-xl outline-none focus:border-brand-primary text-sm text-slate-100 transition-all placeholder:text-slate-600 light:bg-slate-50 light:border-slate-200 light:text-slate-900 light:placeholder:text-slate-400">
+                </div>
+
+                <!-- Email Field -->
+                <div class="relative">
+                    <div class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-600">
+                        <i data-lucide="mail" class="w-4 h-4"></i>
+                    </div>
+                    <input type="email" id="authEmail" placeholder="Enter Email Address" required
+                        class="w-full pl-11 pr-4 py-3 bg-slate-950/60 border border-slate-800 rounded-xl outline-none focus:border-brand-primary text-sm text-slate-100 transition-all placeholder:text-slate-600 light:bg-slate-50 light:border-slate-200 light:text-slate-900 light:placeholder:text-slate-400">
+                </div>
+
+                <!-- Password Field -->
+                <div class="relative">
+                    <div class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-600">
+                        <i data-lucide="lock" class="w-4 h-4"></i>
+                    </div>
+                    <input type="password" id="authPassword" placeholder="Enter Password" required
+                        class="w-full pl-11 pr-4 py-3 bg-slate-950/60 border border-slate-800 rounded-xl outline-none focus:border-brand-primary text-sm text-slate-100 transition-all placeholder:text-slate-600 light:bg-slate-50 light:border-slate-200 light:text-slate-900 light:placeholder:text-slate-400">
+                </div>
+
+                <!-- Terms Checklist -->
+                <div class="flex items-start gap-2.5 pt-1 text-xs text-slate-500">
+                    <input type="checkbox" id="authTerms" required class="mt-0.5 rounded border-slate-800 bg-slate-950/60 accent-brand-primary focus:ring-transparent">
+                    <label for="authTerms" class="leading-relaxed">I agree to SaveVibe's secure <button type="button" onclick="showLegalModal('terms')" class="text-brand-primary hover:underline font-semibold focus:outline-none">Terms of Service</button> & <button type="button" onclick="showLegalModal('privacy')" class="text-brand-primary hover:underline font-semibold focus:outline-none">Privacy Policy</button>.</label>
+                </div>
+
+                <!-- Submit Submit button -->
+                <button type="submit" id="authSubmitBtn" class="w-full py-3 px-6 rounded-xl bg-gradient-to-r from-brand-primary via-brand-secondary to-brand-accent text-white text-sm font-bold shadow-lg shadow-purple-500/15 hover:shadow-purple-500/25 transition-all">
+                    Register Secure Profile
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Global Floating Legal Documents Modal Overlay -->
+    <div id="legalOverlay" class="fixed inset-0 z-[120] bg-slate-950/80 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300 flex items-center justify-center p-4">
+        <div id="legalModal" class="relative w-full max-w-3xl bg-[#0e1320] border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-2xl transition-all duration-300 scale-95 opacity-0 light:bg-white light:border-slate-200 flex flex-col max-h-[90vh]">
+            
+            <!-- Close Button -->
+            <button id="closeLegalBtn" class="absolute top-4 right-4 text-slate-500 hover:text-white transition-colors p-2 light:hover:text-slate-950">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+
+            <!-- Modal Header -->
+            <div class="text-left mb-6 border-b border-slate-800/80 pb-4 light:border-slate-200">
+                <h3 class="font-display font-extrabold text-2xl text-white light:text-slate-900">Legal Agreements</h3>
+                <p class="text-xs text-slate-500 mt-1">Please read our terms, privacy policies, and DMCA guidelines carefully.</p>
+            </div>
+
+            <!-- Legal Switchers Tabs -->
+            <div class="grid grid-cols-3 bg-slate-950/60 p-1.5 rounded-xl border border-slate-800 mb-6 light:bg-slate-100 light:border-slate-200 shrink-0">
+                <button id="tabPrivacy" onclick="switchLegalTab('privacy')" class="py-2.5 text-xs font-semibold rounded-lg transition-all">Privacy Policy</button>
+                <button id="tabTerms" onclick="switchLegalTab('terms')" class="py-2.5 text-xs font-semibold rounded-lg transition-all">Terms of Service</button>
+                <button id="tabDmca" onclick="switchLegalTab('dmca')" class="py-2.5 text-xs font-semibold rounded-lg transition-all">DMCA Disclaimer</button>
+            </div>
+
+            <!-- Scrollable Legal Content Area -->
+            <div class="overflow-y-auto pr-2 space-y-6 text-sm text-slate-400 light:text-slate-600 leading-relaxed flex-grow text-left custom-scrollbar">
+                
+                <!-- Privacy Policy Content Block -->
+                <div id="legalContentPrivacy" class="hidden space-y-4">
+                    <h4 class="font-display font-bold text-lg text-white light:text-slate-900">Privacy Policy for SaveVibe</h4>
+                    <p class="text-xs text-slate-500">Last updated: May 2026</p>
+                    
+                    <p>At SaveVibe, accessible from savevibe.net, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by SaveVibe and how we use it.</p>
+                    
+                    <h5 class="font-display font-semibold text-white light:text-slate-800 mt-4">1. No Personal Media Data Collection</h5>
+                    <p>SaveVibe operates as a secure client-side utility stream link extractor. We <strong>do not store</strong>, host, compile, or keep copies of the social media videos, reels, photos, or audios you process on our servers. All temporary connections are processed purely to parse raw CDN links.</p>
+                    
+                    <h5 class="font-display font-semibold text-white light:text-slate-800 mt-4">2. Cookies and Web Beacons</h5>
+                    <p>Like any other website, SaveVibe uses 'cookies'. These cookies are used to store information including visitors' preferences, and the pages on the website that the visitor accessed or visited. The information is used to optimize the users' experience by customizing our web page content based on visitors' browser type and/or other info.</p>
+
+                    <h5 class="font-display font-semibold text-white light:text-slate-800 mt-4">3. Google DoubleClick DART Cookie</h5>
+                    <p>Google is one of a third-party vendor on our site. It also uses cookies, known as DART cookies, to serve ads to our site visitors based upon their visit to our site and other sites on the internet.</p>
+                    
+                    <h5 class="font-display font-semibold text-white light:text-slate-800 mt-4">4. Security Infrastructure</h5>
+                    <p>We implement top-tier secure sockets layer (SSL) encryption protocols across our entire delivery network to ensure that your extraction requests, connection traces, and system details remain completely anonymous and shielded from malicious tracking.</p>
+                </div>
+
+                <!-- Terms of Service Content Block -->
+                <div id="legalContentTerms" class="hidden space-y-4">
+                    <h4 class="font-display font-bold text-lg text-white light:text-slate-900">Terms of Service</h4>
+                    <p class="text-xs text-slate-500">Last updated: May 2026</p>
+
+                    <p>Welcome to SaveVibe! By accessing or using our free online services, you agree to comply with and be bound by the following terms and conditions. Please read them thoroughly before utilizing our platform.</p>
+
+                    <h5 class="font-display font-semibold text-white light:text-slate-800 mt-4">1. Lawful & Permitted Use</h5>
+                    <p>You agree to use SaveVibe solely for personal, non-commercial research, archiving, and educational entertainment purposes. You must not use our tool to download copyrighted materials for illegal distribution or monetization.</p>
+
+                    <h5 class="font-display font-semibold text-white light:text-slate-800 mt-4">2. Fair Use Policy</h5>
+                    <p>SaveVibe provides dynamic high-speed download extraction free of charge. However, automatic scraping, high-frequency bot calls, or structural DDoS attempts targeting our extraction engines are strictly forbidden and will result in permanent IP blacklisting.</p>
+
+                    <h5 class="font-display font-semibold text-white light:text-slate-800 mt-4">3. Disclaimer of Liability</h5>
+                    <p>SaveVibe, its developers, and affiliates do not assume any legal responsibility for the intellectual property processed through this web tool. Users are entirely responsible for securing permission from content creators before utilizing saved materials.</p>
+
+                    <h5 class="font-display font-semibold text-white light:text-slate-800 mt-4">4. Service Availability</h5>
+                    <p>We offer this browser-based utility "as is" and do not guarantee uninterrupted stream extraction or functional compatibility for all future social media API patches, although our team works actively to deploy bypasses.</p>
+                </div>
+
+                <!-- DMCA Disclaimer Content Block -->
+                <div id="legalContentDmca" class="hidden space-y-4">
+                    <h4 class="font-display font-bold text-lg text-white light:text-slate-900">DMCA Copyright Policy & Disclaimer</h4>
+                    <p class="text-xs text-slate-500">Last updated: May 2026</p>
+
+                    <p>SaveVibe is highly committed to respecting the intellectual property rights of content owners globally. We strictly adhere to the Digital Millennium Copyright Act (DMCA) standards.</p>
+
+                    <h5 class="font-display font-semibold text-white light:text-slate-800 mt-4">1. Server Limitations & Zero-Hosting Policy</h5>
+                    <p>We want to clarify that SaveVibe <strong>does not host</strong>, store, stream, or re-upload any of the video files or audio files on our servers. All extractions are fetched and downloaded directly from public CDN (Content Delivery Network) servers belonging to respective platforms (such as Instagram, TikTok, YouTube, Pinterest, etc.).</p>
+
+                    <h5 class="font-display font-semibold text-white light:text-slate-800 mt-4">2. Take-Down & Inquiries</h5>
+                    <p>Since no multimedia assets reside on our network infrastructure, we cannot "delete" videos from the internet. To remove a video permanently, you must contact the primary social media platform host. However, if you are a copyright holder and want us to block link-parsing for your specific profile/URLs, please contact our support desk.</p>
+
+                    <h5 class="font-display font-semibold text-white light:text-slate-800 mt-4">3. Trademark Disclaimers</h5>
+                    <p>All brand names, product logos, and system trademarks (such as TikTok, Instagram, Pinterest, YouTube, Twitter) displayed on this site are the sole property of their respective owners. SaveVibe operates purely as an independent downloader search engine.</p>
+                </div>
+
+            </div>
+
+            <!-- Footer of Modal -->
+            <div class="mt-6 border-t border-slate-800/80 pt-4 flex justify-between items-center text-xs shrink-0 light:border-slate-200">
+                <span class="text-slate-500 flex items-center gap-1">
+                    <i class="fa-solid fa-shield-halved text-brand-primary"></i> 100% Encrypted Connection
+                </span>
+                <button onclick="hideLegalModal()" class="px-5 py-2.5 bg-slate-900 text-white rounded-xl hover:bg-slate-800 transition-colors font-semibold light:bg-slate-100 light:text-slate-900 light:hover:bg-slate-200">
+                    I Understand
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Dynamic Notification Alert Toast (Avoids standard alert blockages) -->
+    <div id="toastAlert" class="fixed bottom-6 right-6 z-[110] translate-y-12 opacity-0 pointer-events-none transition-all duration-300 max-w-sm glassmorphism rounded-2xl p-4 shadow-2xl flex items-center gap-3.5 border border-purple-500/30">
+        <div id="toastIcon" class="w-8 h-8 rounded-lg bg-purple-500/10 flex items-center justify-center shrink-0 border border-purple-500/20">
+            <i class="fa-solid fa-info text-purple-400"></i>
+        </div>
+        <div>
+            <h5 id="toastTitle" class="font-display font-semibold text-xs text-white uppercase tracking-wider light:text-slate-900">Notification</h5>
+            <p id="toastMessage" class="text-xs text-slate-400 mt-0.5 light:text-slate-500">Your profile is updated successfully.</p>
+        </div>
+    </div>
+
+    <!-- Footer Section with Legal Disclaimers -->
+    <footer class="bg-[#060911] text-slate-400 border-t border-slate-900 py-16 px-4 sm:px-6 lg:px-8 relative z-10 light:bg-white light:border-slate-200">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+                
+                <!-- Footer Column 1: Brand Info -->
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-2">
+                        <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-brand-primary to-brand-accent p-[2px]">
+                            <div class="w-full h-full bg-brand-darkBg rounded-[6px] flex items-center justify-center">
+                                <i class="fa-solid fa-cloud-arrow-down text-purple-400 text-sm"></i>
+                            </div>
+                        </div>
+                        <span class="font-display font-bold text-lg text-white dark:text-white light:text-slate-900">SaveVibe</span>
+                    </div>
+                    <p class="text-sm text-slate-500 max-w-sm light:text-slate-500">
+                        SaveVibe is the premier fast social media video downloader engineered to secure ultra-quality files without bloatware.
+                    </p>
+                </div>
+
+                <!-- Footer Column 2: Supported Sites -->
+                <div class="space-y-4">
+                    <h4 class="font-display font-semibold text-white text-sm uppercase tracking-wider dark:text-white light:text-slate-900">Supported Formats</h4>
+                    <div class="grid grid-cols-2 gap-2 text-xs text-slate-500">
+                        <span>• Instagram Reels</span>
+                        <span>• TikTok No-Watermark</span>
+                        <span>• Pinterest MP4s</span>
+                        <span>• YouTube MP4</span>
+                        <span>• Twitter Video Save</span>
+                        <span>• FB Video HD</span>
+                    </div>
+                </div>
+
+                <!-- Footer Column 3: Trust & Info -->
+                <div class="space-y-4">
+                    <h4 class="font-display font-semibold text-white text-sm uppercase tracking-wider dark:text-white light:text-slate-900">Disclaimer Notice</h4>
+                    <p class="text-xs text-slate-600 leading-relaxed light:text-slate-400">
+                        SaveVibe is not affiliated, associated, or officially connected with Instagram, TikTok, Pinterest, YouTube, Twitter, or Facebook. We do not host copyrighted videos on our servers. All extracted videos are sourced from public CDNs.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Footer Bottom Bar -->
+            <div class="pt-8 border-t border-slate-900/60 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-slate-600 dark:border-slate-800/60 light:border-slate-200">
+                <span>&copy; 2026 SaveVibe. All rights reserved. Made for free evergreen utility web.</span>
+                <div class="flex space-x-6">
+                    <button onclick="showLegalModal('privacy')" class="hover:text-slate-400 transition-colors">Privacy Policy</button>
+                    <button onclick="showLegalModal('terms')" class="hover:text-slate-400 transition-colors">Terms of Service</button>
+                    <button onclick="showLegalModal('dmca')" class="hover:text-slate-400 transition-colors">DMCA Notice</button>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts for Functionality -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Theme Toggle Logic
+        const themeToggleBtn = document.getElementById('themeToggle');
+        const htmlElement = document.documentElement;
+
+        // Check stored theme or system preference
+        if (localStorage.getItem('theme') === 'light' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: light)').matches)) {
+            htmlElement.classList.add('light');
+            htmlElement.classList.remove('dark');
+        } else {
+            htmlElement.classList.add('dark');
+            htmlElement.classList.remove('light');
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+            if (htmlElement.classList.contains('light')) {
+                htmlElement.classList.remove('light');
+                htmlElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                htmlElement.classList.remove('dark');
+                htmlElement.classList.add('light');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+        // Authentic Session States
+        let isLoggedIn = false;
+        let currentUser = null;
+        let currentAuthTab = 'register'; // 'register' or 'login'
+        let savedDownloadsList = [];
+
+        // UI references for Auth & Portal
+        const authHeaderGroup = document.getElementById('authHeaderGroup');
+        const authOverlay = document.getElementById('authOverlay');
+        const authModal = document.getElementById('authModal');
+        const closeAuthBtn = document.getElementById('closeAuthBtn');
+        const openSignInBtn = document.getElementById('openSignInBtn');
+        const openSignUpBtn = document.getElementById('openSignUpBtn');
+        const tabRegister = document.getElementById('tabRegister');
+        const tabLogin = document.getElementById('tabLogin');
+        const authForm = document.getElementById('authForm');
+        const usernameInputGroup = document.getElementById('usernameInputGroup');
+        const authUsername = document.getElementById('authUsername');
+        const authEmail = document.getElementById('authEmail');
+        const authPassword = document.getElementById('authPassword');
+        const authTerms = document.getElementById('authTerms');
+        const authSubmitBtn = document.getElementById('authSubmitBtn');
+        const authModalTitle = document.getElementById('authModalTitle');
+        const authModalSubtitle = document.getElementById('authModalSubtitle');
+
+        // Premium Dashboard references
+        const premiumDashboardSection = document.getElementById('premiumDashboardSection');
+        const dashboardUsername = document.getElementById('dashboardUsername');
+        const historyLogsList = document.getElementById('historyLogsList');
+        const emptyHistoryPlaceholder = document.getElementById('emptyHistoryPlaceholder');
+
+        // Legal Modal DOM references
+        const legalOverlay = document.getElementById('legalOverlay');
+        const legalModal = document.getElementById('legalModal');
+        const closeLegalBtn = document.getElementById('closeLegalBtn');
+        const tabPrivacy = document.getElementById('tabPrivacy');
+        const tabTerms = document.getElementById('tabTerms');
+        const tabDmca = document.getElementById('tabDmca');
+        
+        const legalContentPrivacy = document.getElementById('legalContentPrivacy');
+        const legalContentTerms = document.getElementById('legalContentTerms');
+        const legalContentDmca = document.getElementById('legalContentDmca');
+
+        // Show Legal Modal and activate specific tab
+        window.showLegalModal = function(activeTab = 'privacy') {
+            legalOverlay.classList.remove('opacity-0', 'pointer-events-none');
+            legalModal.classList.remove('scale-95', 'opacity-0');
+            legalModal.classList.add('scale-100', 'opacity-100');
+            switchLegalTab(activeTab);
+        }
+
+        window.hideLegalModal = function() {
+            legalOverlay.classList.add('opacity-0', 'pointer-events-none');
+            legalModal.classList.add('scale-95', 'opacity-0');
+            legalModal.classList.remove('scale-100', 'opacity-100');
+        }
+
+        // Switch visible document inside modal
+        window.switchLegalTab = function(type) {
+            // Reset tab button states
+            const inactiveBtnClass = "py-2.5 text-xs font-medium text-slate-400 hover:text-white light:hover:text-slate-900 transition-all";
+            const activeBtnClass = "py-2.5 text-xs font-bold rounded-lg bg-slate-900 text-white shadow-md light:bg-white light:text-slate-900 transition-all";
+            
+            tabPrivacy.className = inactiveBtnClass;
+            tabTerms.className = inactiveBtnClass;
+            tabDmca.className = inactiveBtnClass;
+
+            // Hide all contents
+            legalContentPrivacy.classList.add('hidden');
+            legalContentTerms.classList.add('hidden');
+            legalContentDmca.classList.add('hidden');
+
+            // Apply selected active states
+            if (type === 'privacy') {
+                tabPrivacy.className = activeBtnClass;
+                legalContentPrivacy.classList.remove('hidden');
+            } else if (type === 'terms') {
+                tabTerms.className = activeBtnClass;
+                legalContentTerms.classList.remove('hidden');
+            } else if (type === 'dmca') {
+                tabDmca.className = activeBtnClass;
+                legalContentDmca.classList.remove('hidden');
+            }
+        }
+
+        // Event listener bindings
+        closeLegalBtn.addEventListener('click', hideLegalModal);
+        legalOverlay.addEventListener('click', (e) => {
+            if (e.target === legalOverlay) hideLegalModal();
+        });
+
+        // Custom micro-toast alerts triggers
+        const toastAlert = document.getElementById('toastAlert');
+        const toastIcon = document.getElementById('toastIcon');
+        const toastTitle = document.getElementById('toastTitle');
+        const toastMessage = document.getElementById('toastMessage');
+
+        function triggerToast(title, message, isError = false) {
+            toastTitle.textContent = title;
+            toastMessage.textContent = message;
+            
+            if (isError) {
+                toastIcon.innerHTML = `<i class="fa-solid fa-circle-exclamation text-red-400"></i>`;
+                toastIcon.className = "w-8 h-8 rounded-lg bg-red-500/10 flex items-center justify-center shrink-0 border border-red-500/20";
+                toastAlert.style.borderColor = "rgba(239, 68, 68, 0.3)";
+            } else {
+                toastIcon.innerHTML = `<i class="fa-solid fa-crown text-purple-400"></i>`;
+                toastIcon.className = "w-8 h-8 rounded-lg bg-purple-500/10 flex items-center justify-center shrink-0 border border-purple-500/20";
+                toastAlert.style.borderColor = "rgba(168, 85, 247, 0.3)";
+            }
+
+            // Animate sliding on screen
+            toastAlert.classList.remove('translate-y-12', 'opacity-0');
+            toastAlert.classList.add('translate-y-0', 'opacity-100');
+            
+            setTimeout(() => {
+                toastAlert.classList.remove('translate-y-0', 'opacity-100');
+                toastAlert.classList.add('translate-y-12', 'opacity-0');
+            }, 4000);
+        }
+
+        // Toggle Auth Modal overlay
+        function showAuthModal(tabType = 'register') {
+            currentAuthTab = tabType;
+            toggleAuthTabs(tabType);
+            authOverlay.classList.remove('opacity-0', 'pointer-events-none');
+            authModal.classList.remove('scale-95', 'opacity-0');
+            authModal.classList.add('scale-100', 'opacity-100');
+        }
+
+        function hideAuthModal() {
+            authOverlay.classList.add('opacity-0', 'pointer-events-none');
+            authModal.classList.add('scale-95', 'opacity-0');
+            authModal.classList.remove('scale-100', 'opacity-100');
+        }
+
+        function toggleAuthTabs(type) {
+            currentAuthTab = type;
+            if (type === 'register') {
+                tabRegister.className = "py-2 text-xs font-bold rounded-lg bg-slate-900 text-white shadow-md light:bg-white light:text-slate-900 transition-all";
+                tabLogin.className = "py-2 text-xs font-medium text-slate-400 hover:text-white light:hover:text-slate-900 transition-all";
+                usernameInputGroup.classList.remove('hidden');
+                authUsername.required = true;
+                authModalTitle.textContent = "Get Premium Free";
+                authModalSubtitle.textContent = "Unlock fast downloads and history logging instantly.";
+                authSubmitBtn.textContent = "Register Secure Profile";
+            } else {
+                tabLogin.className = "py-2 text-xs font-bold rounded-lg bg-slate-900 text-white shadow-md light:bg-white light:text-slate-900 transition-all";
+                tabRegister.className = "py-2 text-xs font-medium text-slate-400 hover:text-white light:hover:text-slate-900 transition-all";
+                usernameInputGroup.classList.add('hidden');
+                authUsername.required = false;
+                authModalTitle.textContent = "Access Portal";
+                authModalSubtitle.textContent = "Sign in to save unlimited media content.";
+                authSubmitBtn.textContent = "Authenticate Account";
+            }
+        }
+
+        // Bind overlay action items
+        openSignInBtn.addEventListener('click', () => showAuthModal('login'));
+        openSignUpBtn.addEventListener('click', () => showAuthModal('register'));
+        closeAuthBtn.addEventListener('click', hideAuthModal);
+        tabRegister.addEventListener('click', () => toggleAuthTabs('register'));
+        tabLogin.addEventListener('click', () => toggleAuthTabs('login'));
+
+        // Handle Form Authentications
+        authForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const email = authEmail.value.trim();
+            const password = authPassword.value;
+            const username = authUsername.value.trim() || email.split('@')[0];
+
+            if (currentAuthTab === 'register') {
+                currentUser = { username, email, rank: "PRO USER", joined: "Today" };
+                triggerToast("Account Generated!", `Welcome to SaveVibe Premium, ${username}!`);
+            } else {
+                currentUser = { username: username || "Super Downloader", email, rank: "PRO USER", joined: "Today" };
+                triggerToast("Access Granted!", `Welcome back, ${currentUser.username}!`);
+            }
+
+            isLoggedIn = true;
+            updateHeaderState();
+            unlockDashboardState();
+            hideAuthModal();
+        });
+
+        // Dynamic Header UI updater based on Login Status
+        function updateHeaderState() {
+            if (isLoggedIn && currentUser) {
+                authHeaderGroup.innerHTML = `
+                    <div class="flex items-center space-x-3 bg-slate-950/40 p-1.5 pr-3.5 border border-slate-800/80 rounded-2xl light:bg-white light:border-slate-200">
+                        <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-brand-primary to-brand-accent flex items-center justify-center text-white font-bold text-sm shadow-inner uppercase shrink-0">
+                            ${currentUser.username.charAt(0)}
+                        </div>
+                        <div class="text-left leading-tight hidden sm:block">
+                            <div class="text-xs font-bold text-white light:text-slate-900 truncate max-w-[100px]">${currentUser.username}</div>
+                            <span class="text-[9px] text-purple-400 font-extrabold uppercase tracking-wide">PRO Active</span>
+                        </div>
+                        <button id="logoutBtn" class="text-slate-500 hover:text-red-400 transition-colors pl-1.5" title="Sign Out">
+                            <i data-lucide="log-out" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                `;
+                
+                // Add event trigger to logout dynamic item
+                document.getElementById('logoutBtn').addEventListener('click', () => {
+                    isLoggedIn = false;
+                    currentUser = null;
+                    triggerToast("Signed Out", "Your secure session is closed.", true);
+                    resetHeaderState();
+                    lockDashboardState();
+                });
+                lucide.createIcons();
+            }
+        }
+
+        function resetHeaderState() {
+            authHeaderGroup.innerHTML = `
+                <button id="openSignInBtn" class="text-sm font-semibold hover:text-white dark:hover:text-white light:hover:text-slate-900 transition-colors px-3 py-2">
+                    Sign In
+                </button>
+                <button id="openSignUpBtn" class="relative group overflow-hidden text-xs sm:text-sm font-bold bg-gradient-to-r from-brand-primary to-brand-secondary text-white px-4 py-2 sm:px-5 sm:py-2.5 rounded-xl shadow-lg shadow-indigo-500/15 hover:shadow-indigo-500/25 transition-all">
+                    Get Premium Free
+                </button>
+            `;
+            // Rebind listeners on freshly generated DOM elements
+            document.getElementById('openSignInBtn').addEventListener('click', () => showAuthModal('login'));
+            document.getElementById('openSignUpBtn').addEventListener('click', () => showAuthModal('register'));
+        }
+
+        function unlockDashboardState() {
+            if (currentUser) {
+                dashboardUsername.textContent = `${currentUser.username}'s Portal`;
+                premiumDashboardSection.classList.remove('hidden');
+                setTimeout(() => {
+                    premiumDashboardSection.classList.remove('scale-95', 'opacity-0');
+                    premiumDashboardSection.classList.add('scale-100', 'opacity-100');
+                }, 10);
+                
+                // Refresh rendering of active history item logs
+                renderHistoryLogs();
+            }
+        }
+
+        function lockDashboardState() {
+            premiumDashboardSection.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+                premiumDashboardSection.classList.add('hidden');
+            }, 400);
+        }
+
+        // Add dynamically compiled downloaded objects inside logged list
+        function logDownloadEvent(platformName, videoTitle) {
+            const timeStamp = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            
+            savedDownloadsList.unshift({
+                platform: platformName,
+                title: videoTitle,
+                time: timeStamp,
+                format: "MP4 (Video HD)"
+            });
+
+            if (isLoggedIn) {
+                renderHistoryLogs();
+            }
+        }
+
+        function renderHistoryLogs() {
+            if (savedDownloadsList.length === 0) {
+                emptyHistoryPlaceholder.classList.remove('hidden');
+                return;
+            }
+
+            emptyHistoryPlaceholder.classList.add('hidden');
+            
+            // Re-render HTML stack sequence of lists
+            historyLogsList.innerHTML = savedDownloadsList.map((item, idx) => `
+                <div class="flex items-center justify-between p-3 bg-slate-950/50 rounded-xl border border-slate-800/80 flex-wrap gap-2 transition-all hover:bg-slate-900/40 light:bg-slate-50 light:border-slate-200">
+                    <div class="flex items-center space-x-3 min-w-0 flex-grow">
+                        <div class="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 ${getHistoryPlatformColors(item.platform)}">
+                            ${getHistoryPlatformIcon(item.platform)}
+                        </div>
+                        <div class="min-w-0 text-left">
+                            <div class="text-xs font-semibold text-white truncate max-w-[200px] sm:max-w-md light:text-slate-900">${item.title}</div>
+                            <span class="text-[10px] text-slate-500">${item.format} • ${item.time}</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="text-[10px] bg-emerald-500/10 text-emerald-400 font-bold border border-emerald-500/20 px-2 py-0.5 rounded-full">Saved</span>
+                        <button onclick="downloadHistoryFileDirect('${item.title}')" class="text-slate-400 hover:text-white transition-colors p-1.5" title="Re-download">
+                            <i class="fa-solid fa-redo-alt text-[11px]"></i>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function getHistoryPlatformIcon(platform) {
+            if (platform.includes('INSTAGRAM')) return '<i class="fa-brands fa-instagram text-sm"></i>';
+            if (platform.includes('TIKTOK')) return '<i class="fa-brands fa-tiktok text-sm"></i>';
+            if (platform.includes('YOUTUBE')) return '<i class="fa-brands fa-youtube text-sm"></i>';
+            if (platform.includes('PINTEREST')) return '<i class="fa-brands fa-pinterest text-sm"></i>';
+            if (platform.includes('TWITTER')) return '<i class="fa-brands fa-twitter text-sm"></i>';
+            return '<i class="fa-solid fa-link text-sm"></i>';
+        }
+
+        function getHistoryPlatformColors(platform) {
+            if (platform.includes('INSTAGRAM')) return 'bg-pink-500/10 text-pink-400';
+            if (platform.includes('TIKTOK')) return 'bg-teal-500/10 text-teal-400';
+            if (platform.includes('YOUTUBE')) return 'bg-red-500/10 text-red-500';
+            if (platform.includes('PINTEREST')) return 'bg-red-400/10 text-red-400';
+            if (platform.includes('TWITTER')) return 'bg-sky-500/10 text-sky-400';
+            return 'bg-purple-500/10 text-purple-400';
+        }
+
+        // Direct download trigger from history items
+        window.downloadHistoryFileDirect = function(title) {
+            const data = `SaveVibe Downloader HD Successful Re-Download!\nSourced Content Title: ${title}`;
+            const blob = new Blob([data], { type: 'text/plain' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.style.display = 'none';
+            a.href = url;
+            a.download = `savevibe-${title.toLowerCase().replace(/[^a-z0-9]+/g, '-')}.mp4`;
+            document.body.appendChild(a);
+            a.click();
+            window.URL.revokeObjectURL(url);
+            triggerToast("Download Started!", "Checking local download folder.");
+        }
+
+        // Toggle FAQ Accordions with Smooth Expand
+        function toggleFaq(button) {
+            const answer = button.nextElementSibling;
+            const icon = button.querySelector('.faq-icon');
+            
+            // Toggle visibility classes
+            answer.classList.toggle('hidden');
+            
+            // Animate Icon spin
+            if (answer.classList.contains('hidden')) {
+                icon.style.transform = 'rotate(0deg)';
+                button.parentElement.classList.remove('border-brand-primary/40');
+            } else {
+                icon.style.transform = 'rotate(180deg)';
+                button.parentElement.classList.add('border-brand-primary/40');
+            }
+        }
+
+        // Auto-detect social media platform from entered URL in real-time
+        const videoUrlInput = document.getElementById('videoUrl');
+        const inputBrandIcon = document.getElementById('inputBrandIcon');
+        const mainInputContainer = document.getElementById('mainInputContainer');
+        const platformButtons = document.querySelectorAll('.platform-btn');
+
+        videoUrlInput.addEventListener('input', (e) => {
+            const url = e.target.value.toLowerCase().trim();
+            detectPlatformAndApplyStyling(url);
+        });
+
+        function detectPlatformAndApplyStyling(url) {
+            let platform = null;
+            let iconClass = 'fa-solid fa-link';
+            let activeColorClass = '';
+            let shadowClass = '';
+
+            // Regex checks
+            if (url.includes('instagram.com') || url.includes('instagr.am')) {
+                platform = 'instagram';
+                iconClass = 'fa-brands fa-instagram text-pink-500';
+                activeColorClass = 'border-pink-500/50 shadow-pink-500/10';
+            } else if (url.includes('tiktok.com')) {
+                platform = 'tiktok';
+                iconClass = 'fa-brands fa-tiktok text-teal-400';
+                activeColorClass = 'border-teal-400/50 shadow-teal-400/10';
+            } else if (url.includes('youtube.com') || url.includes('youtu.be')) {
+                platform = 'youtube';
+                iconClass = 'fa-brands fa-youtube text-red-500';
+                activeColorClass = 'border-red-500/50 shadow-red-500/10';
+            } else if (url.includes('pinterest.com') || url.includes('pin.it')) {
+                platform = 'pinterest';
+                iconClass = 'fa-brands fa-pinterest text-red-400';
+                activeColorClass = 'border-red-400/50 shadow-red-400/10';
+            } else if (url.includes('twitter.com') || url.includes('x.com')) {
+                platform = 'twitter';
+                iconClass = 'fa-brands fa-twitter text-sky-400';
+                activeColorClass = 'border-sky-400/50 shadow-sky-400/10';
+            } else if (url.includes('facebook.com') || url.includes('fb.watch') || url.includes('fb.com')) {
+                platform = 'facebook';
+                iconClass = 'fa-brands fa-facebook text-blue-500';
+                activeColorClass = 'border-blue-500/50 shadow-blue-500/10';
+            }
+
+            // Update Input box icon
+            inputBrandIcon.innerHTML = `<i class="${iconClass} text-xl transition-all"></i>`;
+
+            if (platform) {
+                // Remove existing shadow and border styling
+                mainInputContainer.className = "relative glassmorphism rounded-3xl p-6 sm:p-8 shadow-2xl transition-all duration-300 border-2 " + activeColorClass;
+                
+                // Set the corresponding navigation pill to active state
+                platformButtons.forEach(btn => {
+                    const btnPlatform = btn.getAttribute('data-platform');
+                    if (btnPlatform === platform) {
+                        btn.className = getActivePlatformClass(platform);
+                    } else {
+                        btn.className = getInactivePlatformClass(btnPlatform);
+                    }
+                });
+            } else {
+                mainInputContainer.className = "relative glassmorphism rounded-3xl p-6 sm:p-8 shadow-2xl transition-all duration-300 border border-slate-800/80";
+                // Reset platform pill colors
+                platformButtons.forEach(btn => {
+                    btn.className = getInactivePlatformClass(btn.getAttribute('data-platform'));
+                });
+            }
+        }
+
+        // Helper classes for design styling mapping
+        function getActivePlatformClass(platform) {
+            switch(platform) {
+                case 'instagram': return "platform-btn active transition-all flex items-center space-x-2 px-4 py-2 rounded-full border border-pink-500/40 bg-pink-500/15 text-pink-400 text-sm font-medium";
+                case 'tiktok': return "platform-btn active transition-all flex items-center space-x-2 px-4 py-2 rounded-full border border-teal-500/40 bg-teal-500/15 text-teal-400 text-sm font-medium";
+                case 'youtube': return "platform-btn active transition-all flex items-center space-x-2 px-4 py-2 rounded-full border border-red-500/40 bg-red-500/15 text-red-400 text-sm font-medium";
+                case 'pinterest': return "platform-btn active transition-all flex items-center space-x-2 px-4 py-2 rounded-full border border-red-400/40 bg-red-400/15 text-red-400 text-sm font-medium";
+                case 'twitter': return "platform-btn active transition-all flex items-center space-x-2 px-4 py-2 rounded-full border border-sky-400/40 bg-sky-400/15 text-sky-400 text-sm font-medium";
+                case 'facebook': return "platform-btn active transition-all flex items-center space-x-2 px-4 py-2 rounded-full border border-blue-500/40 bg-blue-500/15 text-blue-400 text-sm font-medium";
+            }
+        }
+
+        function getInactivePlatformClass(platform) {
+            let hoverColor = "hover:text-purple-400 hover:border-purple-500/20 hover:bg-purple-500/5";
+            if (platform === 'instagram') hoverColor = "hover:text-pink-400 hover:border-pink-500/20 hover:bg-pink-500/5";
+            if (platform === 'tiktok') hoverColor = "hover:text-teal-400 hover:border-teal-500/20 hover:bg-teal-500/5";
+            if (platform === 'youtube') hoverColor = "hover:text-red-500 hover:border-red-500/20 hover:bg-red-500/5";
+            if (platform === 'pinterest') hoverColor = "hover:text-red-400 hover:border-red-400/20 hover:bg-red-400/5";
+            if (platform === 'twitter') hoverColor = "hover:text-sky-400 hover:border-sky-400/20 hover:bg-sky-400/5";
+            if (platform === 'facebook') hoverColor = "hover:text-blue-500 hover:border-blue-500/20 hover:bg-blue-500/5";
+
+            return `platform-btn transition-all flex items-center space-x-2 px-4 py-2 rounded-full border border-slate-800 bg-slate-900/40 text-slate-400 ${hoverColor} text-sm font-medium`;
+        }
+
+        // Manual Platform Selection Click
+        platformButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const targetPlatform = btn.getAttribute('data-platform');
+                platformButtons.forEach(b => {
+                    const p = b.getAttribute('data-platform');
+                    if(p === targetPlatform) {
+                        b.className = getActivePlatformClass(p);
+                    } else {
+                        b.className = getInactivePlatformClass(p);
+                    }
+                });
+
+                // Set focus to input with placeholder hints
+                videoUrlInput.focus();
+                if (targetPlatform === 'instagram') videoUrlInput.placeholder = "Paste Instagram Reels or Post link...";
+                if (targetPlatform === 'tiktok') videoUrlInput.placeholder = "Paste TikTok video link here...";
+                if (targetPlatform === 'youtube') videoUrlInput.placeholder = "Paste YouTube Video or Shorts URL...";
+                if (targetPlatform === 'pinterest') videoUrlInput.placeholder = "Paste Pinterest video pin URL...";
+                if (targetPlatform === 'twitter') videoUrlInput.placeholder = "Paste Twitter (X) video post link...";
+                if (targetPlatform === 'facebook') videoUrlInput.placeholder = "Paste Facebook video post link...";
+            });
+        });
+
+        // Form Submit Simulation & Extraction Pipeline
+        const downloadForm = document.getElementById('downloadForm');
+        const extractionContainer = document.getElementById('extractionContainer');
+        const loaderSequence = document.getElementById('loaderSequence');
+        const outputResults = document.getElementById('outputResults');
+        const loaderTitle = document.getElementById('loaderTitle');
+        const loaderSubtitle = document.getElementById('loaderSubtitle');
+        const loaderProgressBar = document.getElementById('loaderProgressBar');
+        const statusMessage = document.getElementById('statusMessage');
+
+        // Checklist steps references
+        const step1 = document.getElementById('step1');
+        const step2 = document.getElementById('step2');
+        const step3 = document.getElementById('step3');
+
+        // Results reference fields
+        const mediaThumbnail = document.getElementById('mediaThumbnail');
+        const mediaSourceBadge = document.getElementById('mediaSourceBadge');
+        const mediaTitle = document.getElementById('mediaTitle');
+        const extractionPlatformLogo = document.getElementById('extractionPlatformLogo');
+
+        downloadForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const inputUrl = videoUrlInput.value.trim();
+
+            if (!inputUrl) {
+                showStatusMessage("Please enter a valid link first.", "text-red-400");
+                return;
+            }
+
+            // Smoothly display extraction visual container
+            extractionContainer.classList.remove('hidden');
+            loaderSequence.classList.remove('hidden');
+            outputResults.classList.add('hidden');
+            
+            // Scroll to the extraction preview viewport for interactive feedback
+            extractionContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+            // Run mock processing simulation to look stunningly premium
+            startExtractionSimulation(inputUrl);
+        });
+
+        function showStatusMessage(msg, styleClass) {
+            statusMessage.textContent = msg;
+            statusMessage.className = `mt-4 text-sm text-center font-medium ${styleClass}`;
+            statusMessage.classList.remove('hidden');
+            setTimeout(() => {
+                statusMessage.classList.add('hidden');
+            }, 4000);
+        }
+
+        // Live simulation generator to process download logic
+        function startExtractionSimulation(url) {
+            // Reset loader states
+            loaderProgressBar.style.width = '0%';
+            resetSteps();
+
+            // Detect platform for styling the extractor header logo
+            let activeColor = "from-brand-primary to-brand-secondary";
+            let source = "SAVE-VIBE ENGINE";
+            let iconCode = '<i class="fa-solid fa-cloud-arrow-down text-3xl text-white"></i>';
+
+            if (url.includes('instagram')) {
+                activeColor = "from-pink-500 to-purple-600";
+                source = "INSTAGRAM REELS";
+                iconCode = '<i class="fa-brands fa-instagram text-3xl text-white"></i>';
+            } else if (url.includes('tiktok')) {
+                activeColor = "from-teal-400 to-slate-900";
+                source = "TIKTOK NO-WATERMARK";
+                iconCode = '<i class="fa-brands fa-tiktok text-3xl text-white"></i>';
+            } else if (url.includes('youtube')) {
+                activeColor = "from-red-600 to-orange-500";
+                source = "YOUTUBE SHORTS";
+                iconCode = '<i class="fa-brands fa-youtube text-3xl text-white"></i>';
+            } else if (url.includes('pinterest')) {
+                activeColor = "from-red-500 to-pink-500";
+                source = "PINTEREST VIDEO";
+                iconCode = '<i class="fa-brands fa-pinterest text-3xl text-white"></i>';
+            } else if (url.includes('twitter') || url.includes('x.com')) {
+                activeColor = "from-sky-400 to-slate-800";
+                source = "TWITTER (X) POST";
+                iconCode = '<i class="fa-brands fa-twitter text-3xl text-white"></i>';
+            } else if (url.includes('facebook')) {
+                activeColor = "from-blue-600 to-indigo-700";
+                source = "FACEBOOK HD";
+                iconCode = '<i class="fa-brands fa-facebook text-3xl text-white"></i>';
+            }
+
+            extractionPlatformLogo.className = `w-16 h-16 rounded-2xl flex items-center justify-center shadow-lg bg-gradient-to-tr ${activeColor}`;
+            extractionPlatformLogo.innerHTML = iconCode;
+
+            // Log special premium boost subtitles
+            if (isLoggedIn) {
+                loaderSubtitle.innerHTML = `<span class="text-purple-400 font-bold"><i class="fa-solid fa-bolt"></i> Premium Server Active:</span> Speed boosted by 10x compression.`;
+            } else {
+                loaderSubtitle.textContent = "We bypass content security to grab high-definition files.";
+            }
+
+            // Simulated timeline steps (Twice as fast if premium user is logged in!)
+            let progress = 0;
+            const timerStep = isLoggedIn ? 150 : 300;
+            
+            const interval = setInterval(() => {
+                progress += 10;
+                loaderProgressBar.style.width = `${progress}%`;
+
+                if (progress === 20) {
+                    loaderTitle.textContent = "Analyzing Content Payload...";
+                    updateStep(step1, "complete");
+                    updateStep(step2, "active");
+                } else if (progress === 50) {
+                    loaderTitle.textContent = "Bypassing DRM Security Filters...";
+                } else if (progress === 70) {
+                    loaderTitle.textContent = "Extracting High-Definition Media Streams...";
+                    updateStep(step2, "complete");
+                    updateStep(step3, "active");
+                } else if (progress === 90) {
+                    loaderTitle.textContent = "Sourcing Download Delivery CDN Links...";
+                } else if (progress >= 100) {
+                    clearInterval(interval);
+                    updateStep(step3, "complete");
+                    showExtractionResults(source, url);
+                }
+            }, timerStep);
+        }
+
+        function updateStep(element, state) {
+            const dot = element.querySelector('.loader-step-dot');
+            if (state === 'active') {
+                element.classList.remove('opacity-50');
+                dot.className = "loader-step-dot h-2 w-2 rounded-full bg-yellow-500 animate-pulse";
+            } else if (state === 'complete') {
+                element.classList.remove('opacity-50');
+                dot.className = "loader-step-dot h-2 w-2 rounded-full bg-emerald-500";
+                element.classList.add('border-emerald-500/30', 'bg-emerald-500/5');
+            }
+        }
+
+        function resetSteps() {
+            [step1, step2, step3].forEach((el, index) => {
+                const dot = el.querySelector('.loader-step-dot');
+                el.className = "flex items-center gap-2 bg-slate-950/40 p-3 rounded-xl border border-slate-800/80 light:bg-slate-50 light:border-slate-200";
+                if(index === 0) {
+                    dot.className = "loader-step-dot h-2 w-2 rounded-full bg-yellow-500 animate-pulse";
+                } else {
+                    el.classList.add('opacity-50');
+                    dot.className = "loader-step-dot h-2 w-2 rounded-full bg-slate-600";
+                }
+            });
+        }
+
+        // Show Final Output Download Panel
+        function showExtractionResults(source, url) {
+            setTimeout(() => {
+                // Transition sequences
+                loaderSequence.classList.add('hidden');
+                outputResults.classList.remove('hidden');
+                setTimeout(() => {
+                    outputResults.classList.remove('scale-95', 'opacity-0');
+                    outputResults.classList.add('scale-100', 'opacity-100');
+                }, 10);
+
+                // Populate with premium custom mock media thumbnail & info
+                mediaSourceBadge.textContent = source;
+                mediaSourceBadge.className = `inline-block text-[10px] font-bold px-2.5 py-0.5 rounded-full mb-2 border ${getBadgeColors(source)}`;
+                
+                // Create highly contextual dynamic video title & thumbnail based on user platform input
+                const matchedTitle = getMockMediaTitle(source);
+                mediaTitle.textContent = matchedTitle;
+                mediaThumbnail.src = getMockThumbnailUrl(source);
+
+                // Save event into user's profile database logs
+                logDownloadEvent(source, matchedTitle);
+
+            }, 400);
+        }
+
+        function getBadgeColors(source) {
+            if (source.includes('INSTAGRAM')) return 'bg-pink-500/10 text-pink-400 border-pink-500/20';
+            if (source.includes('TIKTOK')) return 'bg-teal-500/10 text-teal-400 border-teal-500/20';
+            if (source.includes('YOUTUBE')) return 'bg-red-500/10 text-red-500 border-red-500/20';
+            if (source.includes('PINTEREST')) return 'bg-red-400/10 text-red-400 border-red-400/20';
+            if (source.includes('TWITTER')) return 'bg-sky-500/10 text-sky-400 border-sky-500/20';
+            return 'bg-blue-500/10 text-blue-500 border-blue-500/20';
+        }
+
+        function getMockMediaTitle(source) {
+            if (source.includes('INSTAGRAM')) return "Fascinating Aesthetics Reels Video - SaveVibe Live Server";
+            if (source.includes('TIKTOK')) return "Oddly Satisfying ASMR Masterpiece (Full Clean Version No Watermark)";
+            if (source.includes('YOUTUBE')) return "Inspiring Sci-Fi Tech Trends & Visual Arts Trailer - Shorts";
+            if (source.includes('PINTEREST')) return "Creative Home Decor Inspiration & DIY Craft - Premium Saver";
+            if (source.includes('TWITTER')) return "Viral Web Development Tricks & Coding Secrets Post";
+            return "Trending Lifestyle & Travel Adventure Video Clip (Full HD 1080p)";
+        }
+
+        function getMockThumbnailUrl(source) {
+            if (source.includes('INSTAGRAM')) return "https://images.unsplash.com/photo-1611224885990-ab7363d1f2a9?w=300&h=300&fit=crop";
+            if (source.includes('TIKTOK')) return "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=300&h=300&fit=crop";
+            if (source.includes('YOUTUBE')) return "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=300&h=300&fit=crop";
+            if (source.includes('PINTEREST')) return "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?w=300&h=300&fit=crop";
+            if (source.includes('TWITTER')) return "https://images.unsplash.com/photo-1542831371-29b0f74f9713?w=300&h=300&fit=crop";
+            return "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=300&h=300&fit=crop";
+        }
+
+        // Action Trigger for Mock File Download (Simulated with actual Blob File generation for incredible usability)
+        document.getElementById('downloadFileBtn').addEventListener('click', () => {
+            const title = mediaTitle.textContent;
+            // Generate a real mock video text file representing delivery success
+            const data = `SaveVibe Downloader HD Successful Bypass!\nSourced Content Title: ${title}\nSourced CDN: Secure_SaveVibe_Server_Mirror_HD_v4.2`;
+            const blob = new Blob([data], { type: 'text/plain' });
+            const url = window.URL.createObjectURL(blob);
+            
+            // Simulating real browser file save mechanism safely
+            const a = document.createElement('a');
+            a.style.display = 'none';
+            a.href = url;
+            a.download = `savevibe-${title.toLowerCase().replace(/[^a-z0-9]+/g, '-')}.mp4`;
+            document.body.appendChild(a);
+            a.click();
+            window.URL.revokeObjectURL(url);
+            
+            showStatusMessage("HD Video saved to downloads successfully!", "text-green-400");
+        });
+
+        // Simulating Audio MP3 Sourcing
+        document.getElementById('downloadAudioBtn').addEventListener('click', () => {
+            const title = mediaTitle.textContent;
+            const data = `SaveVibe Audio MP3 Extract Succeeded!\nExtracted from: ${title}`;
+            const blob = new Blob([data], { type: 'text/plain' });
+            const url = window.URL.createObjectURL(blob);
+            
+            const a = document.createElement('a');
+            a.style.display = 'none';
+            a.href = url;
+            a.download = `savevibe-audio-${title.toLowerCase().replace(/[^a-z0-9]+/g, '-')}.mp3`;
+            document.body.appendChild(a);
+            a.click();
+            window.URL.revokeObjectURL(url);
+            
+            showStatusMessage("Audio track (MP3) generated and saved!", "text-green-400");
+        });
+
+        // Reset Downloader Interface to search new
+        document.getElementById('resetDownloaderBtn').addEventListener('click', () => {
+            extractionContainer.classList.add('hidden');
+            outputResults.classList.add('scale-95', 'opacity-0');
+            videoUrlInput.value = '';
+            inputBrandIcon.innerHTML = `<i data-lucide="link" class="w-5 h-5"></i>`;
+            lucide.createIcons();
+            videoUrlInput.focus();
+        });
+
+        // Real-time Activity Notification loop (Creates massive SEO authority / busy network atmosphere)
+        const recentNotif = document.getElementById('recentDownloadNotification');
+        const simulatedUsers = [
+            "Instagram Reels saved 4s ago",
+            "TikTok video (No Watermark) downloaded 1s ago",
+            "Pinterest Board Image downloaded 12s ago",
+            "Twitter (X) video saved 8s ago",
+            "YouTube Shorts clip downloaded 3s ago",
+            "Facebook HD Video saved 6s ago"
+        ];
+        const platformIcons = [
+            '<i class="fa-brands fa-instagram text-pink-500"></i>',
+            '<i class="fa-brands fa-tiktok text-teal-400"></i>',
+            '<i class="fa-brands fa-pinterest text-red-500"></i>',
+            '<i class="fa-brands fa-twitter text-sky-400"></i>',
+            '<i class="fa-brands fa-youtube text-red-600"></i>',
+            '<i class="fa-brands fa-facebook text-blue-500"></i>'
+        ];
+
+        setInterval(() => {
+            recentNotif.style.opacity = '0';
+            setTimeout(() => {
+                const index = Math.floor(Math.random() * simulatedUsers.length);
+                recentNotif.innerHTML = `<i class="fa-solid fa-fire text-amber-500 animate-bounce"></i> Active User Download: ${platformIcons[index]} ${simulatedUsers[index]}`;
+                recentNotif.style.opacity = '1';
+            }, 500);
+        }, 6000);
+    </script>
+</body>
+</html>
