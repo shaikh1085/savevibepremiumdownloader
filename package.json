@@ -14,5 +14,11 @@
   },
   "engines": {
     "node": ">=18.0.0"
+  },
+  "railway": {
+    "packages": [
+      "ffmpeg",
+      "yt-dlp"
+    ]
   }
 }
