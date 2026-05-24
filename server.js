@@ -8,7 +8,7 @@ const os = require('os');
 // ─── AUTO-CREATE CORRECT NIXPACKS.TOML FOR RAILWAY ───────────────────────────
 const nixpacksPath = path.join(__dirname, 'nixpacks.toml');
 try {
-    fs.writeFileSync(nixpacksPath, `[phases.setup]\nnixPkgs = ["...", "ffmpeg", "python3", "yt-dlp"]\n`);
+ fs.writeFileSync(nixpacksPath, `[phases.setup]\nnixPkgs = ["ffmpeg", "python3", "yt-dlp"]\n`);
     console.log('✅ nixpacks.toml verified and updated with python3!');
 } catch (err) {
     console.error('Failed to write nixpacks.toml:', err.message);
