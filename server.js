@@ -5,16 +5,14 @@ const path = require('path');
 const fs = require('fs');
 const os = require('os');
 
-// ─── AUTO-CREATE NIXPACKS.TOML FOR RAILWAY ───────────────────────────────────
-// Yeh code automatic nixpacks.toml file bana dega taake Railway par ffmpeg aur yt-dlp install ho sakein
+// ─── AUTO-CREATE CORRECT NIXPACKS.TOML FOR RAILWAY ───────────────────────────
+// Yeh code har baar chalne par sahi nixpacks.toml file (python3 ke sath) update karega
 const nixpacksPath = path.join(__dirname, 'nixpacks.toml');
-if (!fs.existsSync(nixpacksPath)) {
-    try {
-        fs.writeFileSync(nixpacksPath, `[phases.setup]\nnixPkgs = ["...", "ffmpeg", "yt-dlp"]\n`);
-        console.log('✅ nixpacks.toml created automatically for Railway!');
-    } catch (err) {
-        console.error('Failed to auto-create nixpacks.toml:', err.message);
-    }
+try {
+    fs.writeFileSync(nixpacksPath, `[phases.setup]\nnixPkgs = ["...", "ffmpeg", "python3", "yt-dlp"]\n`);
+    console.log('✅ nixpacks.toml verified and updated with python3!');
+} catch (err) {
+    console.error('Failed to write nixpacks.toml:', err.message);
 }
 // ─────────────────────────────────────────────────────────────────────────────
 
