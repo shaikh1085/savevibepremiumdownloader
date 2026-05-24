@@ -6,7 +6,6 @@ const fs = require('fs');
 const os = require('os');
 
 // ─── AUTO-CREATE CORRECT NIXPACKS.TOML FOR RAILWAY ───────────────────────────
-// Yeh code har baar chalne par sahi nixpacks.toml file (python3 ke sath) update karega
 const nixpacksPath = path.join(__dirname, 'nixpacks.toml');
 try {
     fs.writeFileSync(nixpacksPath, `[phases.setup]\nnixPkgs = ["...", "ffmpeg", "python3", "yt-dlp"]\n`);
@@ -14,6 +13,17 @@ try {
 } catch (err) {
     console.error('Failed to write nixpacks.toml:', err.message);
 }
+// ─────────────────────────────────────────────────────────────────────────────
+
+// ─── DYNAMIC YT-DLP PATH RESOLUTION ──────────────────────────────────────────
+// Yeh code system ke purane Python 3.9 wale broken yt-dlp ko bypass karega
+let ytDlpPath = 'yt-dlp';
+if (fs.existsSync('/app/.nix-profile/bin/yt-dlp')) {
+    ytDlpPath = '/app/.nix-profile/bin/yt-dlp';
+} else if (fs.existsSync('/root/.nix-profile/bin/yt-dlp')) {
+    ytDlpPath = '/root/.nix-profile/bin/yt-dlp';
+}
+console.log(`Using yt-dlp executable path: ${ytDlpPath}`);
 // ─────────────────────────────────────────────────────────────────────────────
 
 const app = express();
@@ -28,8 +38,8 @@ app.post('/api/info', (req, res) => {
     const { url } = req.body;
     if (!url) return res.status(400).json({ error: 'URL required' });
 
-    // execFile use kiya hai jo special characters jaise '&' ko sahi se handle karta hai
-    execFile('yt-dlp', ['--dump-json', '--no-playlist', url], { timeout: 30000 }, (err, stdout, stderr) => {
+    // Nixpacks wale safe ytDlpPath ka istemaal
+    execFile(ytDlpPath, ['--dump-json', '--no-playlist', url], { timeout: 30000 }, (err, stdout, stderr) => {
         if (err) {
             console.error('yt-dlp error:', stderr || err.message);
             return res.status(500).json({ error: 'Could not fetch video info. Make sure yt-dlp is installed and URL is valid.' });
@@ -74,7 +84,8 @@ app.post('/api/download', (req, res) => {
 
     console.log('Running yt-dlp with arguments:', args);
 
-    execFile('yt-dlp', args, { timeout: 120000 }, (err, stdout, stderr) => {
+    // Nixpacks wale safe ytDlpPath ka istemaal
+    execFile(ytDlpPath, args, { timeout: 120000 }, (err, stdout, stderr) => {
         if (err) {
             console.error('Download error:', stderr || err.message);
             return res.status(500).json({ error: 'Download failed. Make sure ffmpeg is installed on the system.' });
@@ -83,7 +94,6 @@ app.post('/api/download', (req, res) => {
         const ext = type === 'audio' ? 'mp3' : 'mp4';
         const filePath = path.join(tmpDir, `${filename}.${ext}`);
 
-        // Helper function for file streaming
         const streamAndCleanup = (fileToStream, finalExtension) => {
             const mimeType = type === 'audio' ? 'audio/mpeg' : 'video/mp4';
             res.setHeader('Content-Type', mimeType);
@@ -94,7 +104,7 @@ app.post('/api/download', (req, res) => {
 
             stream.on('end', () => {
                 try {
-                    fs.unlinkSync(fileToStream); // Delete temp file after download completes
+                    fs.unlinkSync(fileToStream);
                 } catch (e) {
                     console.error('Failed to delete temp file:', e.message);
                 }
@@ -111,7 +121,6 @@ app.post('/api/download', (req, res) => {
         if (fs.existsSync(filePath)) {
             streamAndCleanup(filePath, ext);
         } else {
-            // Backup fallback (e.g., if ffmpeg is missing and video outputted as another extension)
             const files = fs.readdirSync(tmpDir).filter(f => f.startsWith(filename));
             if (files.length === 0) {
                 return res.status(500).json({ error: 'Downloaded file not found.' });
