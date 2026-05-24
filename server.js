@@ -1,9 +1,22 @@
 const express = require('express');
 const cors = require('cors');
-const { exec } = require('child_process');
+const { execFile } = require('child_process'); // Safe from shell injection & escaping issues
 const path = require('path');
 const fs = require('fs');
 const os = require('os');
+
+// ─── AUTO-CREATE NIXPACKS.TOML FOR RAILWAY ───────────────────────────────────
+// Yeh code automatic nixpacks.toml file bana dega taake Railway par ffmpeg aur yt-dlp install ho sakein
+const nixpacksPath = path.join(__dirname, 'nixpacks.toml');
+if (!fs.existsSync(nixpacksPath)) {
+    try {
+        fs.writeFileSync(nixpacksPath, `[phases.setup]\nnixPkgs = ["...", "ffmpeg", "yt-dlp"]\n`);
+        console.log('✅ nixpacks.toml created automatically for Railway!');
+    } catch (err) {
+        console.error('Failed to auto-create nixpacks.toml:', err.message);
+    }
+}
+// ─────────────────────────────────────────────────────────────────────────────
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -17,12 +30,11 @@ app.post('/api/info', (req, res) => {
     const { url } = req.body;
     if (!url) return res.status(400).json({ error: 'URL required' });
 
-    const cmd = `yt-dlp --dump-json --no-playlist "${url}"`;
-
-    exec(cmd, { timeout: 30000 }, (err, stdout, stderr) => {
+    // execFile use kiya hai jo special characters jaise '&' ko sahi se handle karta hai
+    execFile('yt-dlp', ['--dump-json', '--no-playlist', url], { timeout: 30000 }, (err, stdout, stderr) => {
         if (err) {
-            console.error('yt-dlp error:', stderr);
-            return res.status(500).json({ error: 'Could not fetch video info. Check the URL.' });
+            console.error('yt-dlp error:', stderr || err.message);
+            return res.status(500).json({ error: 'Could not fetch video info. Make sure yt-dlp is installed and URL is valid.' });
         }
         try {
             const data = JSON.parse(stdout);
@@ -53,55 +65,63 @@ app.post('/api/download', (req, res) => {
     const filename = `savevibe_${Date.now()}`;
     const outputTemplate = path.join(tmpDir, `${filename}.%(ext)s`);
 
-    let formatArg = format || 'best[ext=mp4]/best';
-    let postProcess = '';
-
+    const args = [];
     if (type === 'audio') {
-        postProcess = '--extract-audio --audio-format mp3 --audio-quality 0';
+        args.push('--extract-audio', '--audio-format', 'mp3', '--audio-quality', '0');
     } else {
-        formatArg = `"${formatArg}"`;
+        const formatArg = format || 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best';
+        args.push('-f', formatArg, '--merge-output-format', 'mp4');
     }
+    args.push('-o', outputTemplate, url);
 
-    const cmd = type === 'audio'
-        ? `yt-dlp ${postProcess} -o "${outputTemplate}" "${url}"`
-        : `yt-dlp -f ${formatArg} --merge-output-format mp4 -o "${outputTemplate}" "${url}"`;
+    console.log('Running yt-dlp with arguments:', args);
 
-    console.log('Running:', cmd);
-
-    exec(cmd, { timeout: 120000 }, (err, stdout, stderr) => {
+    execFile('yt-dlp', args, { timeout: 120000 }, (err, stdout, stderr) => {
         if (err) {
-            console.error('Download error:', stderr);
-            return res.status(500).json({ error: 'Download failed. Platform may have restrictions.' });
+            console.error('Download error:', stderr || err.message);
+            return res.status(500).json({ error: 'Download failed. Make sure ffmpeg is installed on the system.' });
         }
 
-        // Find the downloaded file
         const ext = type === 'audio' ? 'mp3' : 'mp4';
         const filePath = path.join(tmpDir, `${filename}.${ext}`);
 
-        if (!fs.existsSync(filePath)) {
-            // Try to find any file with our prefix
+        // Helper function for file streaming
+        const streamAndCleanup = (fileToStream, finalExtension) => {
+            const mimeType = type === 'audio' ? 'audio/mpeg' : 'video/mp4';
+            res.setHeader('Content-Type', mimeType);
+            res.setHeader('Content-Disposition', `attachment; filename="savevibe_download.${finalExtension}"`);
+
+            const stream = fs.createReadStream(fileToStream);
+            stream.pipe(res);
+
+            stream.on('end', () => {
+                try {
+                    fs.unlinkSync(fileToStream); // Delete temp file after download completes
+                } catch (e) {
+                    console.error('Failed to delete temp file:', e.message);
+                }
+            });
+
+            stream.on('error', (streamErr) => {
+                console.error('Streaming error:', streamErr);
+                if (!res.headersSent) {
+                    res.status(500).json({ error: 'Streaming failed.' });
+                }
+            });
+        };
+
+        if (fs.existsSync(filePath)) {
+            streamAndCleanup(filePath, ext);
+        } else {
+            // Backup fallback (e.g., if ffmpeg is missing and video outputted as another extension)
             const files = fs.readdirSync(tmpDir).filter(f => f.startsWith(filename));
             if (files.length === 0) {
                 return res.status(500).json({ error: 'Downloaded file not found.' });
             }
             const foundFile = path.join(tmpDir, files[0]);
-            const mimeType = type === 'audio' ? 'audio/mpeg' : 'video/mp4';
-            res.setHeader('Content-Type', mimeType);
-            res.setHeader('Content-Disposition', `attachment; filename="savevibe_download.${files[0].split('.').pop()}"`);
-            const stream = fs.createReadStream(foundFile);
-            stream.pipe(res);
-            stream.on('end', () => { try { fs.unlinkSync(foundFile); } catch(e){} });
-            return;
+            const actualExt = files[0].split('.').pop();
+            streamAndCleanup(foundFile, actualExt);
         }
-
-        const mimeType = type === 'audio' ? 'audio/mpeg' : 'video/mp4';
-        res.setHeader('Content-Type', mimeType);
-        res.setHeader('Content-Disposition', `attachment; filename="savevibe_download.${ext}"`);
-
-        const stream = fs.createReadStream(filePath);
-        stream.pipe(res);
-        stream.on('end', () => { try { fs.unlinkSync(filePath); } catch(e){} });
-        stream.on('error', () => res.status(500).json({ error: 'File streaming error.' }));
     });
 });
 
