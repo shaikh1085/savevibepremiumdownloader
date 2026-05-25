@@ -17,11 +17,19 @@ app.post('/api/info', (req, res) => {
     const { url } = req.body;
     if (!url) return res.status(400).json({ error: 'URL required' });
 
-    // Docker environment mein 'yt-dlp' globally available hai aur Python 3.11 use karta hai
-    execFile('yt-dlp', ['--dump-json', '--no-playlist', url], { timeout: 30000 }, (err, stdout, stderr) => {
+    // iOS client emulation aur force-ipv4 flags lagaye hain taake YouTube robot detection bypass ho sake
+    const args = [
+        '--dump-json', 
+        '--no-playlist', 
+        '--extractor-args', 'youtube:player-client=ios', 
+        '--force-ipv4',
+        url
+    ];
+
+    execFile('yt-dlp', args, { timeout: 30000 }, (err, stdout, stderr) => {
         if (err) {
             console.error('yt-dlp error:', stderr || err.message);
-            return res.status(500).json({ error: 'Could not fetch video info. Make sure the URL is valid.' });
+            return res.status(500).json({ error: 'Could not fetch video info. YouTube blocked the request or URL is invalid.' });
         }
         try {
             const data = JSON.parse(stdout);
@@ -59,7 +67,9 @@ app.post('/api/download', (req, res) => {
         const formatArg = format || 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best';
         args.push('-f', formatArg, '--merge-output-format', 'mp4');
     }
-    args.push('-o', outputTemplate, url);
+    
+    // iOS client emulation aur force-ipv4 yahan bhi apply kiya hai
+    args.push('--extractor-args', 'youtube:player-client=ios', '--force-ipv4', '-o', outputTemplate, url);
 
     console.log('Running yt-dlp with arguments:', args);
 
