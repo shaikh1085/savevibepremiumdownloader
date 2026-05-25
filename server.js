@@ -20,7 +20,6 @@ app.post('/api/info', (req, res) => {
     const args = [
         '--dump-json', 
         '--no-playlist',
-        '--js-runtime', 'node' // yt-dlp ko signature solve karne ke liye Node.js runtime use karne ka bola hai
     ];
 
     // Agar cookies.txt mojud ho toh use shamil karein
@@ -68,10 +67,7 @@ app.post('/api/download', (req, res) => {
     const filename = `savevibe_${Date.now()}`;
     const outputTemplate = path.join(tmpDir, `${filename}.%(ext)s`);
 
-    const args = [
-        '--js-runtime', 'node' // Download phase mein bhi node runtime apply kiya hai
-    ];
-
+    const args = [];
     if (type === 'audio') {
         args.push('--extract-audio', '--audio-format', 'mp3', '--audio-quality', '0');
     } else {
