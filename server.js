@@ -1,30 +1,9 @@
 const express = require('express');
 const cors = require('cors');
-const { execFile } = require('child_process'); // Safe from shell injection & escaping issues
+const { execFile } = require('child_process');
 const path = require('path');
 const fs = require('fs');
 const os = require('os');
-
-// ─── AUTO-CREATE CORRECT NIXPACKS.TOML FOR RAILWAY ───────────────────────────
-const nixpacksPath = path.join(__dirname, 'nixpacks.toml');
-try {
- fs.writeFileSync(nixpacksPath, `[phases.setup]\nnixPkgs = ["ffmpeg", "python3", "yt-dlp"]\n`);
-    console.log('✅ nixpacks.toml verified and updated with python3!');
-} catch (err) {
-    console.error('Failed to write nixpacks.toml:', err.message);
-}
-// ─────────────────────────────────────────────────────────────────────────────
-
-// ─── DYNAMIC YT-DLP PATH RESOLUTION ──────────────────────────────────────────
-// Yeh code system ke purane Python 3.9 wale broken yt-dlp ko bypass karega
-let ytDlpPath = 'yt-dlp';
-if (fs.existsSync('/app/.nix-profile/bin/yt-dlp')) {
-    ytDlpPath = '/app/.nix-profile/bin/yt-dlp';
-} else if (fs.existsSync('/root/.nix-profile/bin/yt-dlp')) {
-    ytDlpPath = '/root/.nix-profile/bin/yt-dlp';
-}
-console.log(`Using yt-dlp executable path: ${ytDlpPath}`);
-// ─────────────────────────────────────────────────────────────────────────────
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -38,11 +17,11 @@ app.post('/api/info', (req, res) => {
     const { url } = req.body;
     if (!url) return res.status(400).json({ error: 'URL required' });
 
-    // Nixpacks wale safe ytDlpPath ka istemaal
-    execFile(ytDlpPath, ['--dump-json', '--no-playlist', url], { timeout: 30000 }, (err, stdout, stderr) => {
+    // Docker environment mein 'yt-dlp' globally available hai aur Python 3.11 use karta hai
+    execFile('yt-dlp', ['--dump-json', '--no-playlist', url], { timeout: 30000 }, (err, stdout, stderr) => {
         if (err) {
             console.error('yt-dlp error:', stderr || err.message);
-            return res.status(500).json({ error: 'Could not fetch video info. Make sure yt-dlp is installed and URL is valid.' });
+            return res.status(500).json({ error: 'Could not fetch video info. Make sure the URL is valid.' });
         }
         try {
             const data = JSON.parse(stdout);
@@ -84,11 +63,10 @@ app.post('/api/download', (req, res) => {
 
     console.log('Running yt-dlp with arguments:', args);
 
-    // Nixpacks wale safe ytDlpPath ka istemaal
-    execFile(ytDlpPath, args, { timeout: 120000 }, (err, stdout, stderr) => {
+    execFile('yt-dlp', args, { timeout: 120000 }, (err, stdout, stderr) => {
         if (err) {
             console.error('Download error:', stderr || err.message);
-            return res.status(500).json({ error: 'Download failed. Make sure ffmpeg is installed on the system.' });
+            return res.status(500).json({ error: 'Download failed. Please try again.' });
         }
 
         const ext = type === 'audio' ? 'mp3' : 'mp4';
