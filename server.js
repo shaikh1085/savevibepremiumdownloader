@@ -17,19 +17,27 @@ app.post('/api/info', (req, res) => {
     const { url } = req.body;
     if (!url) return res.status(400).json({ error: 'URL required' });
 
-    // iOS client emulation aur force-ipv4 flags lagaye hain taake YouTube robot detection bypass ho sake
     const args = [
         '--dump-json', 
-        '--no-playlist', 
-        '--extractor-args', 'youtube:player-client=ios', 
-        '--force-ipv4',
-        url
+        '--no-playlist',
     ];
+
+    // Agar cookies.txt mojud ho toh use shamil karein
+    const cookiePath = path.join(__dirname, 'cookies.txt');
+    if (fs.existsSync(cookiePath)) {
+        args.push('--cookies', 'cookies.txt');
+        console.log('🍪 Using cookies.txt for authentication');
+    } else {
+        // Fallback bypass agar cookies na hon
+        args.push('--extractor-args', 'youtube:player-client=ios', '--force-ipv4');
+    }
+
+    args.push(url);
 
     execFile('yt-dlp', args, { timeout: 30000 }, (err, stdout, stderr) => {
         if (err) {
             console.error('yt-dlp error:', stderr || err.message);
-            return res.status(500).json({ error: 'Could not fetch video info. YouTube blocked the request or URL is invalid.' });
+            return res.status(500).json({ error: 'Could not fetch video info. YouTube blocked the request.' });
         }
         try {
             const data = JSON.parse(stdout);
@@ -67,9 +75,16 @@ app.post('/api/download', (req, res) => {
         const formatArg = format || 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best';
         args.push('-f', formatArg, '--merge-output-format', 'mp4');
     }
-    
-    // iOS client emulation aur force-ipv4 yahan bhi apply kiya hai
-    args.push('--extractor-args', 'youtube:player-client=ios', '--force-ipv4', '-o', outputTemplate, url);
+
+    // Agar cookies.txt mojud ho toh use shamil karein
+    const cookiePath = path.join(__dirname, 'cookies.txt');
+    if (fs.existsSync(cookiePath)) {
+        args.push('--cookies', 'cookies.txt');
+    } else {
+        args.push('--extractor-args', 'youtube:player-client=ios', '--force-ipv4');
+    }
+
+    args.push('-o', outputTemplate, url);
 
     console.log('Running yt-dlp with arguments:', args);
 
