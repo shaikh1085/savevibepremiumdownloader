@@ -1,5 +1,0 @@
-User-agent: *
-Allow: /
-
-# Link to your sitemap
-Sitemap: https://savevibepremiumdownloader-production.up.railway.app/sitemap.xml
