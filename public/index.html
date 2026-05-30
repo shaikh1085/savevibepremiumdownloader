@@ -230,7 +230,7 @@
 </head>
 <body>
 
-<!-- ═══ HEADER ═══ -->
+<!-- ═══ HEADER (FULLY MOBILE RESPONSIVE & WITH BLOG LINK) ═══ -->
 <header style="position:sticky;top:0;z-index:50;border-bottom:1px solid var(--border);background:rgba(8,12,20,0.9);backdrop-filter:blur(20px);">
     <div style="max-width:1200px;margin:0 auto;padding:16px 24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
         <a href="/" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
@@ -240,12 +240,12 @@
             <span class="brand" style="font-size:22px;font-weight:800;color:white;">SaveVibe</span>
         </a>
         <div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap;">
-            <!-- Blog Link (Premium Styled) -->
+            <!-- Premium Styled Blog Link -->
             <a href="https://aiguidehubs.blogspot.com/" target="_blank" style="font-size:14px;color:var(--text);font-weight:600;text-decoration:none;display:flex;align-items:center;gap:6px;transition:color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text)'">
                 <span>Blog</span>
                 <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:11px;color:var(--muted);"></i>
             </a>
-            <!-- System Status -->
+            <!-- All Systems Status -->
             <div style="display:flex;align-items:center;gap:8px;">
                 <span style="width:8px;height:8px;background:#10b981;border-radius:50%;display:inline-block;animation:pulse 2s infinite;"></span>
                 <span style="font-size:13px;color:#10b981;font-weight:500;">All Systems Online</span>
@@ -257,7 +257,7 @@
 <main style="position:relative;z-index:1;">
 
     <!-- ═══ HERO SECTION ═══ -->
-    <section style="max-width:900px;margin:0 auto;padding:48px 24px;text-align:center;">
+    <section style="max-width:900px;margin:0 auto;padding:64px 24px 48px;text-align:center;">
 
         <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(0,212,255,0.08);border:1px solid rgba(0,212,255,0.2);border-radius:100px;padding:6px 16px;margin-bottom:28px;">
             <i class="fa-solid fa-bolt" style="color:var(--accent);font-size:12px;"></i>
@@ -269,11 +269,11 @@
             <span style="background:linear-gradient(135deg,#00d4ff,#7c3aed);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Instantly & Free</span>
         </h1>
 
-        <p style="font-size:18px;color:var(--muted);max-width:600px;margin:0 auto 40px;line-height:1.7;">
+        <p style="font-size:18px;color:var(--muted);max-width:600px;margin:0 auto 48px;line-height:1.7;">
             The fastest way to download videos from <strong style="color:var(--text);">YouTube, TikTok, Instagram</strong> and <strong style="color:var(--text);">Pinterest</strong>. HD quality, MP3 audio — no limits.
         </p>
 
-        <!-- ═══ DOWNLOADER CARD (FULLY MOBILE RESPONSIVE) ═══ -->
+        <!-- ═══ DOWNLOADER CARD (MOBILE RESPONSIVE FLEX) ═══ -->
         <div class="glass accent-glow" id="downloaderCard" style="border-radius:28px;padding:32px;max-width:800px;margin:0 auto;position:relative;transition:border-color 0.3s;">
 
             <!-- Platform Badge -->
@@ -282,7 +282,7 @@
                 <span id="platformName" style="font-size:13px;font-weight:600;color:var(--text);">Unknown</span>
             </div>
 
-            <!-- URL Input Row (Sleek and Stacking on Mobile) -->
+            <!-- URL Input Row (Responsive flex structure) -->
             <div class="flex flex-col sm:flex-row gap-3 w-full">
                 <div style="position:relative;flex:1;min-width:240px;width:100%;">
                     <i class="fa-solid fa-link" style="position:absolute;left:16px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:15px;"></i>
@@ -318,13 +318,13 @@
                 <p id="loaderText" style="color:var(--accent);font-size:14px;font-weight:500;">Fetching video info...</p>
             </div>
 
-            <!-- Result Panel (100% Mobile Responsive Layout) -->
+            <!-- Result Panel (Sleek Mobile responsive flex) -->
             <div id="resultPanel" style="display:none;margin-top:28px;border-top:1px solid var(--border);padding-top:28px;" class="fade-up">
 
                 <div class="flex flex-col sm:flex-row gap-6 items-center sm:items-start text-center sm:text-left mb-5">
 
                     <!-- Thumbnail -->
-                    <div style="width:180px;height:120px;border-radius:16px;background:#0f1623;border:1px solid var(--border);overflow:hidden;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                    <div style="width:180px;height:120px;border-radius:16px;background:#0f1623;border:1px solid var(--border);overflow:hidden;display:flex;align-items:center;justify-content:center;flex-shrink:0;" class="mx-auto sm:mx-0">
                         <img id="thumbImg" src="" alt="Video thumbnail" style="display:none;" class="thumbnail-wrap">
                         <i id="thumbIcon" class="fa-solid fa-film" style="font-size:32px;color:var(--muted);"></i>
                     </div>
@@ -399,5 +399,81 @@
         <div style="display:flex;flex-direction:column;gap:20px;">
             <div style="display:flex;align-items:flex-start;gap:20px;padding:24px;background:rgba(15,22,35,0.5);border:1px solid var(--border);border-radius:20px;flex-wrap:wrap;sm:flex-nowrap;">
                 <div class="step-num">1</div>
-                <div>
+                <div style="flex:1;min-width:200px;">
                     <h3 style="font-size:18px;font-weight:700;color:white;margin:0 0 8px;">Copy the video link</h3>
+                    <p style="color:var(--muted);margin:0;font-size:14px;line-height:1.6;">Open YouTube, TikTok, Instagram or Pinterest. Find the video you want to download. Copy the link from your browser address bar or the share button.</p>
+                </div>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:20px;padding:24px;background:rgba(15,22,35,0.5);border:1px solid var(--border);border-radius:20px;flex-wrap:wrap;sm:flex-nowrap;">
+                <div class="step-num">2</div>
+                <div style="flex:1;min-width:200px;">
+                    <h3 style="font-size:18px;font-weight:700;color:white;margin:0 0 8px;">Paste and fetch</h3>
+                    <p style="color:var(--muted);margin:0;font-size:14px;line-height:1.6;">Paste the link into the SaveVibe search box above and click "Fetch Video". Our server will detect the video and show you download options.</p>
+                </div>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:20px;padding:24px;background:rgba(15,22,35,0.5);border:1px solid var(--border);border-radius:20px;flex-wrap:wrap;sm:flex-nowrap;">
+                <div class="step-num">3</div>
+                <div style="flex:1;min-width:200px;">
+                    <h3 style="font-size:18px;font-weight:700;color:white;margin:0 0 8px;">Choose quality and download</h3>
+                    <p style="color:var(--muted);margin:0;font-size:14px;line-height:1.6;">Select your preferred quality — Best HD, 720p, 480p, or MP3 audio only. Click "Download Now" and the file saves directly to your device.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ FEATURES ═══ -->
+    <section style="max-width:900px;margin:0 auto;padding:0 24px 80px;">
+        <h2 style="font-size:36px;font-weight:800;text-align:center;margin:0 0 12px;color:white;">Why Choose SaveVibe?</h2>
+        <p style="text-align:center;color:var(--muted);margin:0 0 48px;">The most reliable free video downloader online</p>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;">
+            <div class="feature-card">
+                <div style="font-size:28px;margin-bottom:16px;">⚡</div>
+                <h3 style="font-size:17px;font-weight:700;color:white;margin:0 0 8px;">Lightning Fast</h3>
+                <p style="color:var(--muted);font-size:14px;margin:0;line-height:1.6;">Downloads process at maximum server speed. No throttling, no waiting.</p>
+            </div>
+            <div class="feature-card">
+                <div style="font-size:28px;margin-bottom:16px;">🎯</div>
+                <h3 style="font-size:17px;font-weight:700;color:white;margin:0 0 8px;">HD Quality</h3>
+                <p style="color:var(--muted);font-size:14px;margin:0;line-height:1.6;">Download in original HD quality — up to 4K where available. No quality loss.</p>
+            </div>
+            <div class="feature-card">
+                <div style="font-size:28px;margin-bottom:16px;">🔒</div>
+                <h3 style="font-size:17px;font-weight:700;color:white;margin:0 0 8px;">Safe & Private</h3>
+                <p style="color:var(--muted);font-size:14px;margin:0;line-height:1.6;">No account needed. We don't store your links or data. 100% private.</p>
+            </div>
+            <div class="feature-card">
+                <div style="font-size:28px;margin-bottom:16px;">🎵</div>
+                <h3 style="font-size:17px;font-weight:700;color:white;margin:0 0 8px;">MP3 Converter</h3>
+                <p style="color:var(--muted);font-size:14px;margin:0;line-height:1.6;">Extract audio from any video and download as high-quality MP3.</p>
+            </div>
+            <div class="feature-card">
+                <div style="font-size:28px;margin-bottom:16px;">📱</div>
+                <h3 style="font-size:17px;font-weight:700;color:white;margin:0 0 8px;">Works on All Devices</h3>
+                <p style="color:var(--muted);font-size:14px;margin:0;line-height:1.6;">Works on iPhone, Android, PC, Mac — any browser, any device.</p>
+            </div>
+            <div class="feature-card">
+                <div style="font-size:28px;margin-bottom:16px;">🌐</div>
+                <h3 style="font-size:17px;font-weight:700;color:white;margin:0 0 8px;">1000+ Sites</h3>
+                <p style="color:var(--muted);font-size:14px;margin:0;line-height:1.6;">Not just YouTube — download from Twitter, Reddit, Vimeo, Dailymotion and more.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ FAQ SECTION (SEO Gold) ═══ -->
+    <section style="max-width:760px;margin:0 auto;padding:0 24px 80px;" id="faq">
+        <h2 style="font-size:36px;font-weight:800;text-align:center;margin:0 0 12px;color:white;">Frequently Asked Questions</h2>
+        <p style="text-align:center;color:var(--muted);margin:0 0 48px;">Everything you need to know about SaveVibe</p>
+
+        <div style="background:rgba(15,22,35,0.6);border:1px solid var(--border);border-radius:20px;overflow:hidden;">
+            <div class="faq-item" style="padding:20px 24px;">
+                <button onclick="toggleFaq(this)" style="width:100%;display:flex;justify-content:space-between;align-items:center;background:none;border:none;color:white;cursor:pointer;font-family:'Syne',sans-serif;font-size:16px;font-weight:600;text-align:left;">
+                    How do I download a YouTube video for free?
+                    <i class="fa-solid fa-plus faq-icon" style="color:var(--accent);flex-shrink:0;margin-left:16px;"></i>
+                </button>
+                <div class="faq-answer" style="color:var(--muted);font-size:14px;line-height:1.7;padding-top:0;">
+                    <p style="margin:12px 0 0;">Paste your YouTube video URL into the SaveVibe input box, click "Fetch Video", choose your quality (Best HD, 720p, 480p or MP3), then click "Download Now". The video saves directly to your device — no software needed.</p>
+                </div>
+            </div>
+            <div class="faq-item" style="padding:20px 24px;">
+                <button onclick="toggleFaq(this)" style="width:100%;display:flex;justify-content:space-between;align-items:center;background:none;border:none;color:white;cursor:pointer;font-family:'Syne',sans-serif;font-size:16px;font-weight:6
