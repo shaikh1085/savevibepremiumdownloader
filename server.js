@@ -12,10 +12,21 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static('public'));
 
-// ─── GET VIDEO INFO (title, thumbnail, formats) ───────────────────────────────
+// ─── GET VIDEO INFO (Handles both Direct Link and Keyword Search) ─────────────
 app.post('/api/info', (req, res) => {
-    const { url } = req.body;
-    if (!url) return res.status(400).json({ error: 'URL required' });
+    const { url } = req.body; // Isme URL bhi ho sakta hai aur Keyword bhi
+    if (!url) return res.status(400).json({ error: 'URL or Search Term required' });
+
+    const trimmedInput = url.trim();
+
+    // Check karein ke ye direct link hai ya keyword search query
+    let isUrl = false;
+    try {
+        new URL(trimmedInput);
+        isUrl = true;
+    } catch (_) {
+        isUrl = false;
+    }
 
     const args = [
         '--dump-json', 
@@ -31,34 +42,64 @@ app.post('/api/info', (req, res) => {
         args.push('--extractor-args', 'youtube:player-client=ios', '--force-ipv4');
     }
 
-    args.push(url);
+    // Direct link ho ya search, usi ke mutabiq argument pass karein
+    if (isUrl) {
+        args.push(trimmedInput);
+    } else {
+        args.push(`ytsearch5:${trimmedInput}`); // Search query for top 5 videos
+    }
 
     execFile('yt-dlp', args, { timeout: 30000 }, (err, stdout, stderr) => {
         if (err) {
             console.error('yt-dlp error:', stderr || err.message);
-            return res.status(500).json({ error: 'Could not fetch video info. YouTube blocked the request.' });
+            return res.status(500).json({ error: 'Could not fetch video info. Request failed.' });
         }
         try {
-            const data = JSON.parse(stdout);
-            res.json({
-                title: data.title || 'Video',
-                thumbnail: data.thumbnail || '',
-                duration: data.duration_string || '',
-                uploader: data.uploader || '',
-                formats: [
-                    { label: 'Best Quality (MP4)', value: 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best', type: 'video' },
-                    { label: '720p HD (MP4)', value: 'bestvideo[height<=720][ext=mp4]+bestaudio[ext=m4a]/best[height<=720][ext=mp4]', type: 'video' },
-                    { label: '480p (MP4)', value: 'bestvideo[height<=480][ext=mp4]+bestaudio[ext=m4a]/best[height<=480]', type: 'video' },
-                    { label: 'Audio Only (MP3)', value: 'bestaudio', type: 'audio' },
-                ]
-            });
+            if (isUrl) {
+                // Case 1: Direct link (Single video details)
+                const data = JSON.parse(stdout);
+                res.json({
+                    success: true,
+                    isUrl: true,
+                    title: data.title || 'Video',
+                    thumbnail: data.thumbnail || '',
+                    duration: data.duration_string || '',
+                    uploader: data.uploader || '',
+                    url: data.webpage_url || data.original_url || trimmedInput,
+                    formats: [
+                        { label: 'Best Quality (MP4)', value: 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best', type: 'video' },
+                        { label: '720p HD (MP4)', value: 'bestvideo[height<=720][ext=mp4]+bestaudio[ext=m4a]/best[height<=720][ext=mp4]', type: 'video' },
+                        { label: '480p (MP4)', value: 'bestvideo[height<=480][ext=mp4]+bestaudio[ext=m4a]/best[height<=480]', type: 'video' },
+                        { label: 'Audio Only (MP3)', value: 'bestaudio', type: 'audio' },
+                    ]
+                });
+            } else {
+                // Case 2: Keyword search (Multiple video results)
+                const lines = stdout.trim().split('\n').filter(line => line.trim() !== '');
+                const results = lines.map(line => {
+                    const data = JSON.parse(line);
+                    return {
+                        title: data.title || 'Video',
+                        thumbnail: data.thumbnail || '',
+                        duration: data.duration_string || '',
+                        uploader: data.uploader || '',
+                        url: data.webpage_url || data.original_url || ''
+                    };
+                });
+                res.json({
+                    success: true,
+                    isUrl: false,
+                    results: results
+                });
+            }
         } catch (e) {
+            console.error('Parsing error:', e);
             res.status(500).json({ error: 'Failed to parse video data.' });
         }
     });
 });
 
-// ─── DOWNLOAD VIDEO ───────────────────────────────────────────────────────────
+// ─── DOWNLOAD VIDEO (Aapka original setup bina chere as-is) ───────────────────
 app.post('/api/download', (req, res) => {
     const { url, format, type } = req.body;
     if (!url) return res.status(400).json({ error: 'URL required' });
