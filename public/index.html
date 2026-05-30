@@ -223,9 +223,46 @@
         /* FAQ accordion */
         .faq-item { border-bottom: 1px solid var(--border); }
         .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
-        .faq-answer.open { max-height: 500px; } /* Increased height for content spacing */
+        .faq-answer.open { max-height: 500px; }
         .faq-icon { transition: transform 0.3s; }
         .faq-icon.open { transform: rotate(45deg); }
+
+        /* Modal styling (Popup styling) */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(8, 12, 20, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        .modal-overlay.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .modal-card {
+            background: #0f1623;
+            border: 1px solid var(--border);
+            border-radius: 28px;
+            max-width: 600px;
+            width: 100%;
+            max-height: 80vh;
+            overflow-y: auto;
+            padding: 32px;
+            box-shadow: 0 0 40px rgba(0, 212, 255, 0.08);
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+        }
+        .modal-overlay.open .modal-card {
+            transform: translateY(0);
+        }
     </style>
 </head>
 <body>
@@ -527,18 +564,75 @@
         </div>
         <p style="color:var(--muted);font-size:13px;margin:0 0 8px;">The fastest free video downloader for YouTube, TikTok, Instagram & Pinterest.</p>
         
-        <!-- Privacy Policy & Terms Links -->
+        <!-- Interactive Modal Footer Links -->
         <div style="display:flex;justify-content:center;gap:16px;margin:12px 0;flex-wrap:wrap;">
-            <a href="/privacy-policy" style="color:var(--muted);font-size:12px;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='var(--muted)'">Privacy Policy</a>
+            <a href="javascript:void(0)" onclick="openModal('privacyModal')" style="color:var(--muted);font-size:12px;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='var(--muted)'">Privacy Policy</a>
             <span style="color:#1e293b;font-size:12px;">•</span>
-            <a href="/terms-of-service" style="color:var(--muted);font-size:12px;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='var(--muted)'">Terms of Service</a>
-            <span style="color:#1e293b;font-size:12px;">•</span>
-            <a href="/contact" style="color:var(--muted);font-size:12px;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='var(--muted)'">Contact Us</a>
+            <a href="javascript:void(0)" onclick="openModal('termsModal')" style="color:var(--muted);font-size:12px;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='var(--muted)'">Terms of Service</a>
         </div>
 
         <p style="color:#374151;font-size:12px;margin:0;">&copy; 2026 SaveVibe. For personal use only. Please respect content creators and copyright laws.</p>
     </div>
 </footer>
+
+<!-- ═══ POPUP MODALS (PREMIUM GLASSMORPHIC OVERLAYS) ═══ -->
+<!-- Privacy Policy Modal -->
+<div id="privacyModal" class="modal-overlay" onclick="closeModalOnOutsideClick(event, 'privacyModal')">
+    <div class="modal-card">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;border-bottom:1px solid var(--border);padding-bottom:12px;">
+            <h3 style="font-size:20px;font-weight:800;color:white;margin:0;">Privacy Policy</h3>
+            <button onclick="closeModal('privacyModal')" style="background:none;border:none;color:var(--muted);font-size:20px;cursor:pointer;transition:color 0.2s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='var(--muted)'">&times;</button>
+        </div>
+        <div style="color:var(--muted);font-size:14px;line-height:1.7;display:flex;flex-direction:column;gap:16px;">
+            <p>Your privacy is of utmost importance to us. This Privacy Policy outlines how SaveVibe handles, processes, and protects your information when you use our services.</p>
+            <div>
+                <h4 style="color:white;font-weight:700;margin-bottom:4px;">1. Zero Data Retention Policy</h4>
+                <p>We do not store, archive, or keep any logs of the video URLs you paste or the media files you convert. All processing occurs temporarily in the volatile memory (RAM) of our servers. Once your download starts or completes, the transient file is permanently deleted from our cache.</p>
+            </div>
+            <div>
+                <h4 style="color:white;font-weight:700;margin-bottom:4px;">2. Personal Information</h4>
+                <p>SaveVibe is fully functional without any user registration. We do not collect personal identifiers such as names, email addresses, phone numbers, or payment credentials. You remain entirely anonymous while using our platform.</p>
+            </div>
+            <div>
+                <h4 style="color:white;font-weight:700;margin-bottom:4px;">3. Cookies and Third-Party Advertising</h4>
+                <p>We may display third-party advertisements to support our free service. These advertisers (such as Google AdSense) may use cookies, web beacons, or unique device identifiers to compile non-personal browsing data to serve relevant ads. You can easily manage or disable cookies through your browser settings.</p>
+            </div>
+            <div>
+                <h4 style="color:white;font-weight:700;margin-bottom:4px;">4. SSL Encryption</h4>
+                <p>Our website utilizes secure, industry-standard SSL (Secure Sockets Layer) encryption. This ensures that any data or link passed between your browser and our servers remains securely encrypted and private.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Terms of Service Modal -->
+<div id="termsModal" class="modal-overlay" onclick="closeModalOnOutsideClick(event, 'termsModal')">
+    <div class="modal-card">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;border-bottom:1px solid var(--border);padding-bottom:12px;">
+            <h3 style="font-size:20px;font-weight:800;color:white;margin:0;">Terms of Service</h3>
+            <button onclick="closeModal('termsModal')" style="background:none;border:none;color:var(--muted);font-size:20px;cursor:pointer;transition:color 0.2s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='var(--muted)'">&times;</button>
+        </div>
+        <div style="color:var(--muted);font-size:14px;line-height:1.7;display:flex;flex-direction:column;gap:16px;">
+            <p>Welcome to SaveVibe! By accessing our website, you agree to comply with and be bound by the following terms of service.</p>
+            <div>
+                <h4 style="color:white;font-weight:700;margin-bottom:4px;">1. Authorized Personal Use Only</h4>
+                <p>SaveVibe is provided solely for personal, non-commercial, and educational purposes. You agree to use our conversion tool only to download content for which you hold the copyright, have explicit written permission from the copyright owner, or is legally in the public domain.</p>
+            </div>
+            <div>
+                <h4 style="color:white;font-weight:700;margin-bottom:4px;">2. Intellectual Property Rights</h4>
+                <p>We respect the intellectual property rights of content creators. SaveVibe does not host, stream, or duplicate any video or audio files on its platform. It acts strictly as a real-time technical pipeline. The user is entirely responsible for ensuring that their download comply with international copyright regulations.</p>
+            </div>
+            <div>
+                <h4 style="color:white;font-weight:700;margin-bottom:4px;">3. Disclaimer of Warranties</h4>
+                <p>SaveVibe is provided on an "as-is" and "as-available" basis without any warranties, express or implied. We do not guarantee uninterrupted access, error-free conversion, or that the tool will remain compatible with external websites due to continuous platform updates.</p>
+            </div>
+            <div>
+                <h4 style="color:white;font-weight:700;margin-bottom:4px;">4. Termination of Access</h4>
+                <p>We reserve the right to restrict, limit, or block access to our conversion tool at any time, without prior notice, for users who engage in automated scraping, denial of service (DoS) attacks, or violate copyright compliance.</p>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- Toast Box Container -->
 <div id="toastBox" style="position:fixed;bottom:24px;right:24px;z-index:100;display:flex;flex-direction:column;gap:10px;pointer-events:none;"></div>
@@ -760,6 +854,25 @@
         const icon = btn.querySelector('.faq-icon');
         if (answer) answer.classList.toggle('open');
         if (icon) icon.classList.toggle('open');
+    }
+
+    // Modal popup helper functions
+    function openModal(id) {
+        const modal = document.getElementById(id);
+        if (modal) modal.classList.add('open');
+    }
+
+    // Modal close helper functions
+    function closeModal(id) {
+        const modal = document.getElementById(id);
+        if (modal) modal.classList.remove('open');
+    }
+
+    // Close modal if clicked outside the card
+    function closeModalOnOutsideClick(event, id) {
+        if (event.target.id === id) {
+            closeModal(id);
+        }
     }
 
     function showToast(msg, type = 'success') {
