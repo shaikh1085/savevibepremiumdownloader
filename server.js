@@ -12,14 +12,14 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static('public'));
 
-// ─── GET VIDEO INFO (Handles both Direct Link and Keyword Search) ─────────────
+// ─── GET VIDEO INFO (Handles both Direct Link and Keyword Search with Expanded Formats) ───
 app.post('/api/info', (req, res) => {
-    const { url } = req.body; // Isme URL bhi ho sakta hai aur Keyword bhi
-    if (!url) return res.status(400).json({ error: 'URL or Search Term required' });
+    const { url } = req.body;
+    if (!url) return res.status(400).json({ error: 'URL or Search term required' });
 
     const trimmedInput = url.trim();
 
-    // Check karein ke ye direct link hai ya keyword search query
+    // Check karein ke input valid URL hai ya search keyword
     let isUrl = false;
     try {
         new URL(trimmedInput);
@@ -42,21 +42,21 @@ app.post('/api/info', (req, res) => {
         args.push('--extractor-args', 'youtube:player-client=ios', '--force-ipv4');
     }
 
-    // Direct link ho ya search, usi ke mutabiq argument pass karein
+    // Input ke mutabiq yt-dlp arguments set karein
     if (isUrl) {
         args.push(trimmedInput);
     } else {
-        args.push(`ytsearch5:${trimmedInput}`); // Search query for top 5 videos
+        args.push(`ytsearch5:${trimmedInput}`); // Keyword search ke liye top 5 results
     }
 
     execFile('yt-dlp', args, { timeout: 30000 }, (err, stdout, stderr) => {
         if (err) {
             console.error('yt-dlp error:', stderr || err.message);
-            return res.status(500).json({ error: 'Could not fetch video info. Request failed.' });
+            return res.status(500).json({ error: 'Could not fetch details. Request failed.' });
         }
         try {
             if (isUrl) {
-                // Case 1: Direct link (Single video details)
+                // Case 1: Agar direct URL pasted hai
                 const data = JSON.parse(stdout);
                 res.json({
                     success: true,
@@ -67,14 +67,19 @@ app.post('/api/info', (req, res) => {
                     uploader: data.uploader || '',
                     url: data.webpage_url || data.original_url || trimmedInput,
                     formats: [
-                        { label: 'Best Quality (MP4)', value: 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best', type: 'video' },
-                        { label: '720p HD (MP4)', value: 'bestvideo[height<=720][ext=mp4]+bestaudio[ext=m4a]/best[height<=720][ext=mp4]', type: 'video' },
-                        { label: '480p (MP4)', value: 'bestvideo[height<=480][ext=mp4]+bestaudio[ext=m4a]/best[height<=480]', type: 'video' },
-                        { label: 'Audio Only (MP3)', value: 'bestaudio', type: 'audio' },
+                        { label: '🎬 Best Quality (MP4)', value: 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best', type: 'video' },
+                        { label: '💎 2160p 4K (MP4)', value: 'bestvideo[height<=2160][ext=mp4]+bestaudio[ext=m4a]/best[height<=2160][ext=mp4]', type: 'video' },
+                        { label: '🌟 1440p 2K (MP4)', value: 'bestvideo[height<=1440][ext=mp4]+bestaudio[ext=m4a]/best[height<=1440][ext=mp4]', type: 'video' },
+                        { label: '✨ 1080p Full HD (MP4)', value: 'bestvideo[height<=1080][ext=mp4]+bestaudio[ext=m4a]/best[height<=1080][ext=mp4]', type: 'video' },
+                        { label: '📺 720p HD (MP4)', value: 'bestvideo[height<=720][ext=mp4]+bestaudio[ext=m4a]/best[height<=720][ext=mp4]', type: 'video' },
+                        { label: '📱 480p (MP4)', value: 'bestvideo[height<=480][ext=mp4]+bestaudio[ext=m4a]/best[height<=480]', type: 'video' },
+                        { label: '🔋 360p Medium (MP4)', value: 'bestvideo[height<=360][ext=mp4]+bestaudio[ext=m4a]/best[height<=360]', type: 'video' },
+                        { label: '📉 240p Low (MP4)', value: 'bestvideo[height<=240][ext=mp4]+bestaudio[ext=m4a]/best[height<=240]', type: 'video' },
+                        { label: '🎵 Audio Only (MP3)', value: 'bestaudio', type: 'audio' },
                     ]
                 });
             } else {
-                // Case 2: Keyword search (Multiple video results)
+                // Case 2: Agar user ne sirf text/keyword search kiya hai
                 const lines = stdout.trim().split('\n').filter(line => line.trim() !== '');
                 const results = lines.map(line => {
                     const data = JSON.parse(line);
@@ -99,7 +104,7 @@ app.post('/api/info', (req, res) => {
     });
 });
 
-// ─── DOWNLOAD VIDEO (Aapka original setup bina chere as-is) ───────────────────
+// ─── DOWNLOAD VIDEO (Aapka original working setup - untouched) ─────────────────────
 app.post('/api/download', (req, res) => {
     const { url, format, type } = req.body;
     if (!url) return res.status(400).json({ error: 'URL required' });
