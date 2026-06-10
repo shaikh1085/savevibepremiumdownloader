@@ -39,7 +39,11 @@ app.post('/api/info', (req, res) => {
         args.push('--cookies', 'cookies.txt');
         console.log('🍪 Using cookies.txt for authentication');
     } else {
-        args.push('--extractor-args', 'youtube:player-client=ios', '--force-ipv4');
+        // Sirf YouTube ke liye iOS client args
+        const isYouTube = isUrl && (trimmedInput.includes('youtube.com') || trimmedInput.includes('youtu.be'));
+        if (isYouTube) {
+            args.push('--extractor-args', 'youtube:player-client=ios', '--force-ipv4');
+        }
     }
 
     // Input ke mutabiq yt-dlp arguments set karein
@@ -126,7 +130,11 @@ app.post('/api/download', (req, res) => {
     if (fs.existsSync(cookiePath)) {
         args.push('--cookies', 'cookies.txt');
     } else {
-        args.push('--extractor-args', 'youtube:player-client=ios', '--force-ipv4');
+        // Sirf YouTube ke liye iOS client args
+        const isYouTube = url.includes('youtube.com') || url.includes('youtu.be');
+        if (isYouTube) {
+            args.push('--extractor-args', 'youtube:player-client=ios', '--force-ipv4');
+        }
     }
 
     args.push('-o', outputTemplate, url);
