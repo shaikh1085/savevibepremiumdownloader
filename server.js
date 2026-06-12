@@ -10,7 +10,13 @@ const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(express.json());
-app.use(express.static('public'));
+app.get('/sitemap.xml', (req, res) => {
+    res.setHeader('Content-Type', 'application/xml; charset=UTF-8');
+    res.sendFile(path.join(__dirname, 'public', 'sitemap.xml'));
+});
+app.use(express.static('public'));  
+
+// ... baad mein
 
 // ─── GET VIDEO INFO (Handles both Direct Link and Keyword Search with Expanded Formats) ───
 app.post('/api/info', (req, res) => {
