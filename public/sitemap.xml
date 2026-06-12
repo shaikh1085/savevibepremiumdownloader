@@ -2,19 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <!-- Main Canonical Link -->
     <loc>https://savevibepremiumdownloader-production.up.railway.app/</loc>
-    
-    <!-- Localized Alternate Language Links for Google Search Indexing -->
-    <xhtml:link rel="alternate" hreflang="en" href="https://savevibepremiumdownloader-production.up.railway.app/" />
+    <lastmod>2026-06-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://savevibepremiumdownloader-production.up.railway.app/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://savevibepremiumdownloader-production.up.railway.app/?lang=en" />
     <xhtml:link rel="alternate" hreflang="hi" href="https://savevibepremiumdownloader-production.up.railway.app/?lang=hi" />
     <xhtml:link rel="alternate" hreflang="ur" href="https://savevibepremiumdownloader-production.up.railway.app/?lang=ur" />
     <xhtml:link rel="alternate" hreflang="es" href="https://savevibepremiumdownloader-production.up.railway.app/?lang=es" />
     <xhtml:link rel="alternate" hreflang="pt" href="https://savevibepremiumdownloader-production.up.railway.app/?lang=pt" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://savevibepremiumdownloader-production.up.railway.app/" />
-    
-    <lastmod>2026-05-30</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://savevibepremiumdownloader-production.up.railway.app/?lang=ar" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://savevibepremiumdownloader-production.up.railway.app/?lang=fr" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://savevibepremiumdownloader-production.up.railway.app/?lang=de" />
+    <xhtml:link rel="alternate" hreflang="id" href="https://savevibepremiumdownloader-production.up.railway.app/?lang=id" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://savevibepremiumdownloader-production.up.railway.app/?lang=tr" />
   </url>
 </urlset>
