@@ -187,7 +187,11 @@ app.post('/api/download', (req, res) => {
         }
     });
 });
-
+// Sitemap - proper XML Content-Type
+app.get('/sitemap.xml', (req, res) => {
+    res.setHeader('Content-Type', 'application/xml; charset=UTF-8');
+    res.sendFile(path.join(__dirname, 'public', 'sitemap.xml'));
+});
 app.listen(PORT, () => {
     console.log(`✅ SaveVibe Server running at http://localhost:${PORT}`);
 });
